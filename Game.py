@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 from tank import *
-from playertank import *
+from PlayerTank import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -15,7 +15,7 @@ screen = pygame.display.set_mode(size)
 
 player1 = PlayerBall(5, [width/2, height/2])
 
-bgColor = 0,255,0
+bgColor = 0,0,0
 
 mposX = 0
 mposY = 0

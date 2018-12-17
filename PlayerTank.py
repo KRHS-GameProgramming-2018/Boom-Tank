@@ -42,7 +42,7 @@ class PlayerBall(Ball):
             self.speedx = 0
         
    
-        def update(self, size):
+    def update(self, size):
         Ball.update(self, size)
         
         

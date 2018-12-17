@@ -18,9 +18,31 @@ class PlayerBall(Ball):
     def setPos(self, pos):
         self.rect.center = pos
         
-   
+    def go(self, d):
+        if d == "up":
+            self.speedy = -self.maxSpeed
+            self.images = self.imagesN
+        if d == "down":
+            self.speedy = self.maxSpeed
+            self.images = self.imagesS
+        if d == "left":
+            self.speedx = -self.maxSpeed
+            self.images = self.imagesW
+        if d == "right":
+            self.speedx = self.maxSpeed
+            self.images = self.imagesE
             
-    def update(self, size):
+        if d == "sup":
+            self.speedy = 0
+        if d == "sdown":
+            self.speedy = 0
+        if d == "sleft":
+            self.speedx = 0
+        if d == "sright":
+            self.speedx = 0
+        
+   
+        def update(self, size):
         Ball.update(self, size)
         
         
@@ -51,9 +73,13 @@ class PlayerBall(Ball):
         self.rect = self.rect.move(self.speed)
 
     def rotate(self, point):
-        c = self.rect.center
-        
-        self.angle = 270
-        self.image = pygame.transform.rotate(self.baseImage, self.angle)
-        self.rect = self.image.get_rect(center = c)
-
+        mousePos = pygame.mouse.get_pos()
+        mousePosPlayerX = mousePos[0] - self.rect.center[0]
+        mousePosPlayerY = mousePos[1] - self.rect.center[1]
+        self.angle = ((math.atan2(mousePosPlayerY, mousePosPlayerX))/math.pi)*180
+        self.angle = -self.angle
+        rot_image = pygame.transform.rotate(self.baseImage, self.angle)
+        rot_rect = self.rect.copy()
+        rot_rect.center = rot_image.get_rect().center
+        rot_image = rot_image.subsurface(rot_rect)
+        self.image = rot_image

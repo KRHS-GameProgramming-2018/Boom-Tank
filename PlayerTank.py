@@ -51,6 +51,9 @@ class PlayerBall(Ball):
         self.rect = self.rect.move(self.speed)
 
     def rotate(self, point):
-        self.angle += 5
-        self.image = pygame.transform.rotate(self.baseImage, self.angle            )
+        c = self.rect.center
+        
+        self.angle = 270
+        self.image = pygame.transform.rotate(self.baseImage, self.angle)
+        self.rect = self.image.get_rect(center = c)
 

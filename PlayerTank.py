@@ -12,7 +12,8 @@ class PlayerBall(Ball):
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect(center = startPos)
         
-        self.maxSpeed = maxSpeed
+        s
+        elf.maxSpeed = maxSpeed
         self.goal = [0,0]
         
     def setPos(self, pos):

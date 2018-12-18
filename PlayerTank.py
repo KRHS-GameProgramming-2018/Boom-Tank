@@ -1,5 +1,5 @@
 import pygame, sys, math
-from tank import *
+from Tank import *
 
 class PlayerBall(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
@@ -83,3 +83,7 @@ class PlayerBall(Ball):
         rot_rect.center = rot_image.get_rect().center
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
+        
+        
+    def shoot(self, angle, pos):
+        

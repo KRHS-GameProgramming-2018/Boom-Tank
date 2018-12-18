@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 import pygame, sys, math, random
-from tank import *
+from Tank import *
 from PlayerTank import *
 pygame.init()
 

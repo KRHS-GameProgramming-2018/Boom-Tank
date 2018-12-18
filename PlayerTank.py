@@ -1,5 +1,5 @@
 import pygame, sys, math
-from tank import *
+from Tank import *
 
 class PlayerBall(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):

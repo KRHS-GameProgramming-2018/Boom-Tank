@@ -1,9 +1,10 @@
 import pygame, sys, math
-from tank import *
+from Tank import *
 
 class PlayerBall(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.baseImage = pygame.image.load("turret.png")
+       
         
         Ball.__init__(self, "turret.png", [0,0], startPos)
         
@@ -12,8 +13,8 @@ class PlayerBall(Ball):
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect(center = startPos)
         
-        s
-        elf.maxSpeed = maxSpeed
+        
+        self.maxSpeed = maxSpeed
         self.goal = [0,0]
         
     def setPos(self, pos):

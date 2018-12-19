@@ -85,5 +85,4 @@ class PlayerBall(Ball):
         self.image = rot_image
         
         
-    def shoot(self, angle, pos):
-        
+

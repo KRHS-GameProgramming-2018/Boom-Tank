@@ -68,5 +68,6 @@ class Bullet:
         self.rect = self.rect.move(self.speed)
     
     
-    def shoot(self, angle, pos):     
+    def shoot(self, angle, pos): 
+            
     

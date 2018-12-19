@@ -4,6 +4,10 @@ from Tank import *
 class PlayerBall(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.baseImage = pygame.image.load("turret.png")
+        self.imagesE = [pygame.image.load("PlayerTank/images/tankleft.png")],
+        self.imagesW = [pygame.image.load("PlayerTank/images/tankright.png")],
+        self.imagesN = [pygame.image.load("PlayerTank/images/tankup.png")],
+        self.imagesS = [pygame.image.load("PlayerTank/images/tankdown.png")]
        
         
         Ball.__init__(self, "turret.png", [0,0], startPos)

@@ -2,8 +2,8 @@ import pygame, sys, math, random
 
 class Ball():
     def __init__(self, image, speed=[5,5], startPos=[0,0]):
-        self.image = pygame.image.load(image)
-        self.rect = self.image.get_rect()
+        self.baseImage = pygame.image.load(image)
+        self.rect = self.baseImage.get_rect()
         self.speedx = speed[0]
         self.speedy = speed[1]
         self.speed = [self.speedx, self.speedy]

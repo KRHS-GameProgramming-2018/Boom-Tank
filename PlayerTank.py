@@ -4,19 +4,17 @@ from Tank import *
 class PlayerBall(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.baseImage = pygame.image.load("turret.png")
-        self.imagesE = [pygame.image.load("PlayerTank/images/tankleft.png")],
-        self.imagesW = [pygame.image.load("PlayerTank/images/tankright.png")],
-        self.imagesN = [pygame.image.load("PlayerTank/images/tankup.png")],
-        self.imagesS = [pygame.image.load("PlayerTank/images/tankdown.png")]
-       
         
+       
         Ball.__init__(self, "turret.png", [0,0], startPos)
         
         
         self.angle = 0
         self.image = pygame.transform.rotate(self.baseImage, 0)
         self.rect = self.image.get_rect(center = startPos)
-        
+        self.frame = 0;
+        self.images = self.baseImage
+        self.rect = self.baseImage.get_rect()
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -27,16 +25,17 @@ class PlayerBall(Ball):
     def go(self, d):
         if d == "up":
             self.speedy = -self.maxSpeed
-            self.images = self.imagesN
+            self.images = self.baseImage
         if d == "down":
             self.speedy = self.maxSpeed
-            self.images = self.imagesS
+            self.images = self.baseImage
         if d == "left":
             self.speedx = -self.maxSpeed
-            self.images = self.imagesW
+            self.images = self.baseImage
         if d == "right":
             self.speedx = self.maxSpeed
-            self.images = self.imagesE
+            self.images = self.baseImage
+            
             
         if d == "sup":
             self.speedy = 0

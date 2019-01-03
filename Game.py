@@ -29,7 +29,24 @@ while True:
             sys.exit()
         if event.type == pygame.MOUSEMOTION:
             player1.rotate(event.pos)
-            
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                player1.go("up")
+            if event.key == pygame.K_a:
+                player1.go("left")
+            if event.key == pygame.K_s:
+                player1.go("down")
+            if event.key == pygame.K_d:
+                player1.go("right")
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_w:
+                player1.go("sup")
+            if event.key == pygame.K_a:
+                player1.go("sleft")
+            if event.key == pygame.K_s:
+                player1.go("sdown")
+            if event.key == pygame.K_d:
+                player1.go("sright")
    
     screen.fill(bgColor)
     screen.blit(player1.image, player1.rect)

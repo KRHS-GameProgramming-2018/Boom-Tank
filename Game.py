@@ -14,7 +14,7 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-player1 = PlayerBall(5, [width/2, height/2])
+player1 = PlayerTank(5, [width/2, height/2])
 
 bgColor = 0,0,0
 

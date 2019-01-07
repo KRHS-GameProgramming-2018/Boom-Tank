@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 import pygame, sys, math, random
-from TankTurret import *
+from Turret import *
 from PlayerTurret import *
 from TankBody import *
 from PlayerTankBody import *
@@ -17,7 +17,7 @@ size = width, height
 screen = pygame.display.set_mode(size)
 
 player1 = PlayerTurret(5, [width/2, height/2])
-player2 = PlayerTank(6, [width/3, height/3])
+player2 = PlayerTankBody(6, [width/3, height/3])
 
 bgColor = 0,0,0
 
@@ -50,10 +50,14 @@ while True:
                 player2.go("sdown")
             if event.key == pygame.K_d:
                 player2.go("sright")
+                
+    player2.update(size)
+    player1.update(size, player2.rect.center)
    
     screen.fill(bgColor)
-    screen.blit(player1.image, player1.rect)
     screen.blit(player2.image, player2.rect)
+    screen.blit(player1.image, player1.rect)
+    
     pygame.display.flip()
     clock.tick(60)
     #print clock.get_fps()

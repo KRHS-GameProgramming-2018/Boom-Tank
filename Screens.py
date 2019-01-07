@@ -1,9 +1,18 @@
 
 
 def showSplash():
+    output = ""
+    output += "---------------------------------------\n"
+    output += "|                                     |\n"
+    output += "|              Boom Tank              |\n"
+    output += "|                                     |\n"
+    output += "|                                     |\n"
+    output += "|                                     |\n"
+    output += "---------------------------------------\n"
 
 
 
+    return output
 
 
 

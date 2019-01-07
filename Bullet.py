@@ -69,5 +69,5 @@ class Bullet:
     
     
     def shoot(self, angle, pos): 
-            
+                    
     

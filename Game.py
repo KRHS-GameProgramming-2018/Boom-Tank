@@ -17,7 +17,7 @@ size = width, height
 screen = pygame.display.set_mode(size)
 
 player1 = PlayerTurret(5, [width/2, height/2])
-player2 = PlayerTankBody(6, [width/3, height/3])
+player2 = PlayerTankBody(2, [width/3, height/3])
 
 bgColor = 0,0,0
 

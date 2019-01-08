@@ -1,7 +1,7 @@
 import pygame, sys, math, random
 
 class Bullet:
-    def __init__(self, maxSpeed, startPos=[0,0]):
+    def __init__(self, angle, startPos=[0,0]):
          self.imagesE = [pygame.image.load("Images/Pac/E_1.png"),
       
         
@@ -20,27 +20,13 @@ class Bullet:
         self.goal = [0,0]
         
     def setPos(self, pos):
-        self.rect.center = pos
-        
-   def travel(self):     
+        self.rect.center = pos    
             
     def update(self, size):
         Ball.update(self, size)
         self.animate()
         
-    def animate(self):
-        if self.aniTimer < self.aniTimerMax:
-            self.aniTimer += 1
-        else:
-            self.aniTimer = 0
-            if self.frame < self.maxFrame:
-                self.frame += 1
-            else:
-                self.frame = 0
-                
-            self.image = self.images[self.frame]
-            
-        
+  
     def headTo(self, pos):
         self.goal = pos
         if self.rect.centerx > pos[0]:
@@ -67,7 +53,4 @@ class Bullet:
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
     
-    
-    def shoot(self, angle, pos): 
-                    
     

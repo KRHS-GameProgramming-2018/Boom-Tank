@@ -4,6 +4,7 @@ from Turret import *
 from PlayerTurret import *
 from TankBody import *
 from PlayerTankBody import *
+from Levels import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -21,6 +22,8 @@ player2 = PlayerTankBody(2, [width/3, height/3])
 
 bgColor = 0,0,0
 
+lev=1
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
 mposX = 0
 mposY = 0
@@ -59,6 +62,8 @@ while True:
     screen.fill(bgColor)
     screen.blit(player2.image, player2.rect)
     screen.blit(player1.image, player1.rect)
+    for block in blocks:
+        screen.blit(block.image, block.rect)
             
     pygame.display.flip()
     clock.tick(60)

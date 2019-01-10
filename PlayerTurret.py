@@ -91,6 +91,8 @@ class PlayerTurret(Ball):
         self.image = rot_image
         
     def shoot(self, angle, pos):
+        return Bullet
+        
         
         
         

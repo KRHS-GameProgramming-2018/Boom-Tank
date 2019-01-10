@@ -90,7 +90,9 @@ class PlayerTurret(Ball):
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
         
-    #def shoot(self, angle, pos):
+    def shoot(self, angle, pos):
+        return Bullet
+        
         
         
         

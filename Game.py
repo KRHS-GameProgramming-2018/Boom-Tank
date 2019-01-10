@@ -50,14 +50,16 @@ while True:
                 player2.go("sdown")
             if event.key == pygame.K_d:
                 player2.go("sright")
+       # if event.type == pygame.KEYDOWN:
+           # if event.key == pygame.K_space
+                
                 
     player2.update(size)
     player1.update(size, player2.rect.center)
-   
     screen.fill(bgColor)
     screen.blit(player2.image, player2.rect)
     screen.blit(player1.image, player1.rect)
-    
+            
     pygame.display.flip()
     clock.tick(60)
-    #print clock.get_fps()
+        #print clock.get_fps()

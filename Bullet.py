@@ -2,19 +2,14 @@ import pygame, sys, math, random
 
 class Bullet:
     def __init__(self, angle, startPos=[0,0]):
-         self.imagesE = [pygame.image.load("Images/Pac/E_1.png"),
+         self.image = [pygame.image.load("PlayerTank/Images/Ball.png"),
       
         
-        Ball.__init__(self, "Images/Ball/ball.png", [0,0], startPos)
+        Ball.__init__(self, "PlayerTank/Images/Ball.png", [0,0], startPos)
         
         self.frame = 0;
-        self.images = self.imagesE
-        self.maxFrame = len(self.images)-1
-        self.image = self.images[self.frame]
+        self.image = self.image[self.frame]
         self.rect = self.image.get_rect()
-        
-        self.aniTimer = 0
-        self.aniTimerMax = 60/4
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -24,7 +19,6 @@ class Bullet:
             
     def update(self, size):
         Ball.update(self, size)
-        self.animate()
         
   
     def headTo(self, pos):

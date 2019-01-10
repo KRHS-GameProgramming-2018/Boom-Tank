@@ -25,6 +25,9 @@ bgColor = 0,0,0
 lev=1
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
+lev=2
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
 mposX = 0
 mposY = 0
 

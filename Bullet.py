@@ -5,14 +5,14 @@ class Bullet:
          self.image = [pygame.image.load("PlayerTank/Images/Ball.png"),
       
         
-        Ball.__init__(self, "PlayerTank/Images/Ball.png", [0,0], startPos)
+       # Ball.__init__(self, "PlayerTank/Images/Ball.png", [0,0], startPos)
         
-        self.frame = 0;
-        self.image = self.image[self.frame]
-        self.rect = self.image.get_rect()
+        #self.frame = 0;
+        #self.image = self.image[self.frame]
+        #self.rect = self.image.get_rect()
         
-        self.maxSpeed = maxSpeed
-        self.goal = [0,0]
+        #self.maxSpeed = maxSpeed
+        #self.goal = [0,0]
         
     def setPos(self, pos):
         self.rect.center = pos    

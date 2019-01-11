@@ -13,7 +13,7 @@ def showMenu():
     output += "|                                     |\n"
     output += "|                                     |\n"
     output += "|                                     |\n"
-    output += "|                                     |\n"
+    output += "|   Space) play                       |\n"
     output += "|                                     |\n"
     output += "|   Q) Quit                           |\n"
     output += "|                                     |\n"

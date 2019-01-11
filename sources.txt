@@ -1,0 +1,7 @@
+enemy tank die.wav from http://soundbible.com/576-Barrel-Exploding.html
+	License: Attribution 3.0 
+	Recorded by BlastwaveFx.com 
+
+player and enemy tank miss from http://soundbible.com/1875-Bullet-Whizzing-By.html
+    License: Attribution 3.0 
+    Recorded by Mike Koenig 

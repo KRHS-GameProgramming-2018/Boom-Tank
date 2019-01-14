@@ -22,6 +22,7 @@ player1 = PlayerTurret(5, [width/2, height/2])
 player2 = PlayerTankBody(2, [width/3, height/3])
 
 bgColor = 0,0,0
+
 bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
@@ -65,13 +66,13 @@ while True:
                 
     player2.update(size)
     player1.update(size, player2.rect.center)
-    screen.blit(bgPic, bgPicrect)
     screen.fill(bgColor)
+    screen.blit(bgPic, bgPicrect)
     screen.blit(player2.image, player2.rect)
     screen.blit(player1.image, player1.rect)
     for block in blocks:
         screen.blit(block.image, block.rect)
             
     pygame.display.flip()
-    clock.tick(60)
-        #print clock.get_fps()
+    clock.tick(40)
+    print clock.get_fps()

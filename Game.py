@@ -25,7 +25,7 @@ bgColor = 0,0,0
 
 bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
-
+    
 lev=1
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
@@ -60,8 +60,10 @@ while True:
                 player2.go("sdown")
             if event.key == pygame.K_d:
                 player2.go("sright")
-       # if event.type == pygame.KEYDOWN:
-           # if event.key == pygame.K_space
+       # if event.type == pygame.MOUSECLICK:
+           # if event.key == pygame.K_
+        
+    
                 
                 
     player2.update(size)

@@ -62,6 +62,20 @@ while True:
                 player2.go("sright")
        # if event.type == pygame.KEYDOWN:
            # if event.key == pygame.K_space
+           
+    for ball in balls:
+        ball.update(size)
+    player1.update(size)
+        
+    for hitter in balls:
+        for hittie in balls:
+            hitter.collide(hittie)
+        for tile in level:
+            hitter.collide(tile)
+        hitter.collide(player1)
+        player1.collide(hitter)
+        for Block in level:
+            player1.collide(Block)
                 
                 
     player2.update(size)

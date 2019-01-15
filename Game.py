@@ -32,6 +32,32 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 lev=2
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
+lev=3
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=4
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=5
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=6
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=7
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=8
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=9
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+lev=10
+blocks=loadLevel("Levels/"+str(lev)+".lvl")
+
+balls = []
+
 mposX = 0
 mposY = 0
 

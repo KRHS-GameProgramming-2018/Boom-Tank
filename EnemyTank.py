@@ -3,10 +3,10 @@ from TankBody import *
 
 class PlayerEnemy(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
-        self.imageE = pygame.image.load("PlayerTank/Images/tankright.png")
-        self.imageW = pygame.image.load("PlayerTank/Images/tankleft.png")
-        self.imageN = pygame.image.load("PlayerTank/Images/tankup.png")
-        self.imageS = pygame.image.load("PlayerTank/Images/tankdown.png")
+        self.imageE = pygame.image.load("EnemyTanks/Images/enemytankright.png")
+        self.imageW = pygame.image.load("EnemyTanks/Images/enemytankleft.png")
+        self.imageN = pygame.image.load("EnemyTanks/Images/enemytankup.png")
+        self.imageS = pygame.image.load("EnemyTanks/Images/enemytankdown.png")
                        
         Ball.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
         

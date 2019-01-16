@@ -58,7 +58,7 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 lev=10
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
-player1.rect.center = [85,85]
+player2.rect.center = [85,85]
 
 balls = []
 

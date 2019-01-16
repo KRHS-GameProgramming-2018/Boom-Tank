@@ -6,6 +6,7 @@ from TankBody import *
 from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
+from PlayerTurret2 import *
 #from Bullet import *
 pygame.init()
 
@@ -19,9 +20,11 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-player1 = PlayerTurret(5, [width/2, height/2])
-player2 = PlayerTankBody(2, [width/3, height/3])
-player3 = PlayerEnemy(6, [width/4, height/4])
+playerTurret = PlayerTurret(5, [width/2, height/2])
+enemyTurret = PlayerTurret2(8, [width/5, height/5])
+playerTank = PlayerTankBody(2, [width/3, height/3])
+enemyTank = PlayerEnemy(6, [width/4, height/4])
+
 
 bgColor = 0,0,0
 
@@ -58,8 +61,8 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 lev=10
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
-player2.rect.center = [85,85]
-player3.rect.center = [500,500]
+playerTank.rect.center = [85,85]
+enemyTank.rect.center = [500,500]
 
 balls = []
 
@@ -72,38 +75,42 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
         if event.type == pygame.MOUSEMOTION:
-            player1.rotate(event.pos)
+            playerTurret.rotate(event.pos)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w:
-                player2.go("up")
+                playerTank.go("up")
             if event.key == pygame.K_a:
-                player2.go("left")
+                playerTank.go("left")
             if event.key == pygame.K_s:
-                player2.go("down")
+                playerTank.go("down")
             if event.key == pygame.K_d:
-                player2.go("right")
+                playerTank.go("right")
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
-                player2.go("sup")
+                playerTank.go("sup")
             if event.key == pygame.K_a:
-                player2.go("sleft")
+                playerTank.go("sleft")
             if event.key == pygame.K_s:
-                player2.go("sdown")
+                playerTank.go("sdown")
             if event.key == pygame.K_d:
-                player2.go("sright")
+                playerTank.go("sright")
        # if event.type == pygame.MOUSECLICK:
            # if event.key == pygame.K_
         
     
                 
-    player3.update(size)            
-    player2.update(size)
-    player1.update(size, player2.rect.center)
+    enemyTank.update(size)  
+    enemyTurret.update(size, enemyTank.rect.center)          
+    playerTank.update(size)
+    playerTurret.update(size, playerTank.rect.center)
+    
+    
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)
-    screen.blit(player3.image, player3.rect)
-    screen.blit(player2.image, player2.rect)
-    screen.blit(player1.image, player1.rect)
+    screen.blit(enemyTank.image, enemyTank.rect)
+    screen.blit(enemyTurret.image, enemyTurret.rect)
+    screen.blit(playerTank.image, playerTank.rect)
+    screen.blit(playerTurret.image, playerTurret.rect)
     for block in blocks:
         screen.blit(block.image, block.rect)
             

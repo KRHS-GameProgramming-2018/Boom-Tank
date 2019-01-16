@@ -101,8 +101,8 @@ while True:
     screen.blit(player3.image, player3.rect)
     screen.blit(player2.image, player2.rect)
     screen.blit(player1.image, player1.rect)
-    #for block in blocks:
-        #screen.blit(block.image, block.rect)
+    for block in blocks:
+        screen.blit(block.image, block.rect)
             
     pygame.display.flip()
     clock.tick(40)

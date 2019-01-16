@@ -5,6 +5,7 @@ from PlayerTurret import *
 from TankBody import *
 from PlayerTankBody import *
 from Levels import *
+from EnemyTank import *
 #from Bullet import *
 pygame.init()
 
@@ -20,6 +21,7 @@ screen = pygame.display.set_mode(size)
 
 player1 = PlayerTurret(5, [width/2, height/2])
 player2 = PlayerTankBody(2, [width/3, height/3])
+player3 = PlayerEnemy(6, [width/4, height/4])
 
 bgColor = 0,0,0
 
@@ -91,15 +93,16 @@ while True:
         
     
                 
-                
+    player3.update(size)            
     player2.update(size)
     player1.update(size, player2.rect.center)
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)
+    screen.blit(player3.image, player3.rect)
     screen.blit(player2.image, player2.rect)
     screen.blit(player1.image, player1.rect)
-    for block in blocks:
-        screen.blit(block.image, block.rect)
+    #for block in blocks:
+        #screen.blit(block.image, block.rect)
             
     pygame.display.flip()
     clock.tick(40)

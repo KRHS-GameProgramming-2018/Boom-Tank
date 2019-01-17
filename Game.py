@@ -96,7 +96,24 @@ while True:
                 playerTank.go("sright")
        # if event.type == pygame.MOUSECLICK:
            # if event.key == pygame.K_
+           
+    # for ball in balls:
+        # ball.update(size)
+    # playerTank.update(size)
+    # enemyTank.update(size)
         
+    # for hitter in balls:
+        # for hittie in balls:
+            # playerTank.collide(enemyTank)
+        # for block in level:
+            # hitter.collide(tile)
+        # hitter.collide(playerTank)
+        # playerTank.collide(block)
+        # for Block in level:
+            # playerTank.collide(Block)
+        
+    playerTank.collide(enemyTank)
+    # playerTank.collide(Block)
     
                 
     enemyTank.update(size)  

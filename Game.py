@@ -25,6 +25,7 @@ enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(2, [width/3, height/3])
 enemyTank = PlayerEnemy(6, [width/4, height/4])
 
+bullets = []
 
 bgColor = 0,0,0
 
@@ -94,15 +95,21 @@ while True:
                 playerTank.go("sdown")
             if event.key == pygame.K_d:
                 playerTank.go("sright")
-       # if event.type == pygame.MOUSECLICK:
-           # if event.key == pygame.K_
+        if event.type == pygame.K_SPACE:
+                bullets += [playerTurret.shoot()]
+        
+    for bullet in bullets:
+        bullet.update(size)
         
     
                 
     enemyTank.update(size)  
-    enemyTurret.update(size, enemyTank.rect.center)          
+    enemyTurret.update(size, enemyTank.rect.center)
+    for bullet in bullets:
+        screen.blit(bullet.image, bullet.rect)          
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)
+    
     
     
     screen.fill(bgColor)

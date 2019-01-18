@@ -111,7 +111,6 @@ while True:
     playerTurret.update(size, playerTank.rect.center)
     
     
-    
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)
     screen.blit(enemyTank.image, enemyTank.rect)

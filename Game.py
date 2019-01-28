@@ -113,7 +113,8 @@ while True:
             # playerTank.collide(Block)
         
     playerTank.collide(enemyTank)
-    # playerTank.collide(Block)
+    for block in blocks:
+        playerTank.collide(block)
     
                 
     enemyTank.update(size)  

@@ -108,6 +108,12 @@ while True:
     for bullet in bullets:
         bullet.update(size)
         
+        
+        
+    playerTank.collide(enemyTank)
+    for block in blocks:
+        playerTank.collide(block)
+        
     
                 
     enemyTank.update(size)  

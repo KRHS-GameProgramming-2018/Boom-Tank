@@ -7,7 +7,7 @@ from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
 from PlayerTurret2 import *
-#from Bullet import *
+from Bullet import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -29,6 +29,8 @@ enemyTank = PlayerEnemy(8, [width/4, height/4])
 enemyTurret = PlayerTurret2(10, [width/7, height/5])
 
 
+
+bullets = []
 
 bullets = []
 
@@ -100,31 +102,18 @@ while True:
                 playerTank.go("sdown")
             if event.key == pygame.K_d:
                 playerTank.go("sright")
-       # if event.type == pygame.MOUSECLICK:
-           # if event.key == pygame.K_
-           
-    # for ball in balls:
-        # ball.update(size)
-    # playerTank.update(size)
-    # enemyTank.update(size)
+        if event.type == pygame.K_SPACE:
+                bullets += [playerTurret.shoot()]
         
-    # for hitter in balls:
-        # for hittie in balls:
-            # playerTank.collide(enemyTank)
-        # for block in level:
-            # hitter.collide(tile)
-        # hitter.collide(playerTank)
-        # playerTank.collide(block)
-        # for Block in level:
-            # playerTank.collide(Block)
+    for bullet in bullets:
+        bullet.update(size)
         
-    playerTank.collide(enemyTank)
-    for block in blocks:
-        playerTank.collide(block)
     
                 
     enemyTank.update(size)  
-    enemyTurret.update(size, enemyTank.rect.center)          
+    enemyTurret.update(size, enemyTank.rect.center)
+    for bullet in bullets:
+        screen.blit(bullet.image, bullet.rect)          
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)
     

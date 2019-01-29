@@ -1,5 +1,6 @@
 import pygame, sys, math
 from Turret import *
+from Bullet import *
 
 class PlayerTurret(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):

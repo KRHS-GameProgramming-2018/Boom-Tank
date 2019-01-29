@@ -82,12 +82,12 @@ class PlayerTankBody(Ball):
         height = size[1]
         if self.rect.left < 0 or self.rect.right > width:
             if not self.didBounceX:
-                self.speedx = -self.speedx
-                self.didBounceX = True
+                self.speedx = 0
+                self.didBounceX = False
         if self.rect.top < 0 or self.rect.bottom > height:
             if not self.didBounceY:
-                self.speedy = -self.speedy
-                self.didBounceY = True 
+                self.speedy = 0
+                self.didBounceY = False   
         
     def collide(self, other):
         if not(self == other):

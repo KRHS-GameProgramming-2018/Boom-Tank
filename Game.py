@@ -59,7 +59,7 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
 lev=9
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
-      
+
 lev=10
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 

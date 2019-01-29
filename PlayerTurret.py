@@ -19,6 +19,11 @@ class PlayerTurret(Ball):
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
         
+        self.fireTimer = 0
+        self.fireTimerMax = 60/15
+        self.bullets = []
+        self.firing = False
+        
     def setPos(self, pos):
         self.rect.center = pos
         
@@ -50,6 +55,13 @@ class PlayerTurret(Ball):
     def update(self, size, center):
         #Ball.update(self, size)
         self.rect.center = center
+        
+        if self.firing:
+            if self.fireTimer < self.fireTimerMax:
+                self.fireTimer += 1
+            else:
+                self.fireTimer = 0
+                self.firing = False
         
         
     def headTo(self, pos):
@@ -90,9 +102,27 @@ class PlayerTurret(Ball):
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
         
-    def shoot(self, angle, pos):
-        return Bullet
-        
+    def shoot(self):
+        if self.firing:
+            pass
+        else:
+            self.firing = True
+            self.fireTimer = 0
+            print self.rect.center, self.y
+            if self.y == "down":
+                speed = [0,7]
+                image = "PlayerTank/Images/Ball.png"
+            if self.y == "up":
+                speed = [0,-7]
+                image = "PlayerTank/Images/Ball.png"
+            if self.y == "left":
+                speed = [-7,0]
+                image = "PlayerTank/Images/Ball.png"
+            if self.y == "right":
+                speed = [7,0]
+                image = "PlayerTank/Images/Ball.png"
+            
+            return Bolt(image, speed, self.rect.center)
         
         
         

@@ -25,6 +25,12 @@ enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(2, [width/3, height/3])
 enemyTank = PlayerEnemy(6, [width/4, height/4])
 
+enemyTank = PlayerEnemy(8, [width/4, height/4])
+enemyTurret = PlayerTurret2(10, [width/7, height/5])
+
+
+
+bullets = []
 
 bgColor = 0,0,0
 

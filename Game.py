@@ -7,7 +7,7 @@ from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
 from PlayerTurret2 import *
-#from Bullet import *
+from Bullet import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -24,6 +24,7 @@ playerTurret = PlayerTurret(5, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(2, [width/3, height/3])
 enemyTank = PlayerEnemy(6, [width/4, height/4])
+
 
 bullets = []
 
@@ -58,7 +59,7 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
 lev=9
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
+      
 lev=10
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 

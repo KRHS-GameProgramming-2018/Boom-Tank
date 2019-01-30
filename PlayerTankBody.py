@@ -121,4 +121,13 @@ class PlayerTankBody(Ball):
 
         
         
+    def explode(self, bullet):
+        if self.rect.right > bullet.rect.left:
+            if self.rect.left < bullet.rect.right:
+                if self.rect.top < bullet.rect.bottom:
+                    if self.rect.bottom > bullet.rect.top:
+                        self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
+                        self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
+                        pygame.QUIT
+        
 

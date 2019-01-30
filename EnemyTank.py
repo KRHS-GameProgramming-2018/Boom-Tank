@@ -112,4 +112,48 @@ class PlayerEnemy(Ball):
         rot_rect.center = rot_image.get_rect().center
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
+        
+        
+    def bounceWall(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0 or self.rect.right > width:
+            if not self.didBounceX:
+                self.speedx = 0
+                self.didBounceX = False
+        if self.rect.top < 0 or self.rect.bottom > height:
+            if not self.didBounceY:
+                self.speedy = 0
+                self.didBounceY = False   
+        
+    def collide(self, other):
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                if not self.didBounceX:
+                                    if self.speedx > 1: #right
+                                        if self.rect.centerx < other.rect.centerx:
+                                            self.speedx = 0
+                                            self.didBounceX = True
+                                    if self.speedx < 1: #left
+                                        if self.rect.centerx > other.rect.centerx:
+                                            self.speedx = 0
+                                            self.didBounceX = True
+                                            
+                                if not self.didBounceY:
+                                    if self.speedy > 1: #down
+                                        if self.rect.centery < other.rect.centery:
+                                            self.speedy = 0
+                                            self.didBounceY = True
+                                    if self.speedy < 1: #up
+                                        if self.rect.centery > other.rect.centery:
+                                            self.speedy  = 0
+                                            self.didBounceY = True
+
+                                return True
+        return False
+
 

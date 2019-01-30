@@ -104,37 +104,26 @@ class PlayerTurret(Ball):
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
         
-    def face(self, y):
-        mode, direction = y.split(" ")
-        if mode == "face":
-            self.faceKeys += [direction]
-        elif mode == "stop":
-            try:
-                self.faceKeys.remove(direction)
-            except:
-                return
+  
         
     def shoot(self):
-        if self.firing:
-            pass
-        else:
-            self.firing = True
+        if self.firing = True
             self.fireTimer = 0
             print self.rect.center, self.y
-            if self.y == "down":
-                speed = [0,7]
-                image = "PlayerTank/Images/Ball.png"
-            if self.y == "up":
-                speed = [0,-7]
-                image = "PlayerTank/Images/Ball.png"
-            if self.y == "left":
-                speed = [-7,0]
-                image = "PlayerTank/Images/Ball.png"
-            if self.y == "right":
-                speed = [7,0]
-                image = "PlayerTank/Images/Ball.png"
+        if self.y == "down":
+            speed = [0,7]
+            image = "PlayerTank/Images/Ball.png"
+        if self.y == "up":
+            speed = [0,-7]
+            image = "PlayerTank/Images/Ball.png"
+        if self.y == "left":
+            speed = [-7,0]
+            image = "PlayerTank/Images/Ball.png"
+        if self.y == "right":
+            speed = [7,0]
+            image = "PlayerTank/Images/Ball.png"
             
-            return Bullet(image, speed, self.rect.center)
+        return Bullet(image, speed, self.rect.center)
         
         
         

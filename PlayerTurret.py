@@ -15,6 +15,7 @@ class PlayerTurret(Ball):
         self.rect = self.image.get_rect(center = startPos)
         self.frame = 0;
         self.images = self.baseImage
+        self.y = "down"
         self.rect = self.baseImage.get_rect()
         
         self.maxSpeed = maxSpeed
@@ -103,6 +104,16 @@ class PlayerTurret(Ball):
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
         
+    def face(self, y):
+        mode, direction = y.split(" ")
+        if mode == "face":
+            self.faceKeys += [direction]
+        elif mode == "stop":
+            try:
+                self.faceKeys.remove(direction)
+            except:
+                return
+        
     def shoot(self):
         if self.firing:
             pass
@@ -123,7 +134,7 @@ class PlayerTurret(Ball):
                 speed = [7,0]
                 image = "PlayerTank/Images/Ball.png"
             
-            return Bolt(image, speed, self.rect.center)
+            return Bullet(image, speed, self.rect.center)
         
         
         

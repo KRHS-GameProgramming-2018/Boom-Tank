@@ -107,7 +107,7 @@ class PlayerTurret(Ball):
   
         
     def shoot(self):
-        if self.firing = True
+        if self.firing:
             self.fireTimer = 0
             print self.rect.center, self.y
         if self.y == "down":

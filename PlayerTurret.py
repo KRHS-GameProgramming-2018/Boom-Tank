@@ -106,24 +106,32 @@ class PlayerTurret(Ball):
         
   
         
+        
     def shoot(self):
-        if self.firing = True
+        print "bang"
+        if self.firing:
+            pass
+        else:
+            self.firing = True
             self.fireTimer = 0
             print self.rect.center, self.y
-        if self.y == "down":
-            speed = [0,7]
-            image = "PlayerTank/Images/Ball.png"
-        if self.y == "up":
-            speed = [0,-7]
-            image = "PlayerTank/Images/Ball.png"
-        if self.y == "left":
-            speed = [-7,0]
-            image = "PlayerTank/Images/Ball.png"
-        if self.y == "right":
-            speed = [7,0]
-            image = "PlayerTank/Images/Ball.png"
+            if self.y == "down":
+                speed = [0,7]
+                image = "Ball.png"
+            if self.y == "up":
+                speed = [0,-7]
+                image = "Ball.png"
+            if self.y == "left":
+                speed = [-7,0]
+                image = "Ball.png"
+            if self.y == "right":
+                speed = [7,0]
+                image = "Ball.png"
             
-        return Bullet(image, speed, self.rect.center)
+            return Bullet(image, speed, self.rect.center) 
+            
+            
+        
         
         
         

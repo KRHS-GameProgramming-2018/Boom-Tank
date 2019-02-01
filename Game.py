@@ -91,6 +91,9 @@ while True:
                 playerTank.go("down")
             if event.key == pygame.K_d:
                 playerTank.go("right")
+            if event.key == pygame.K_SPACE:
+                print "shooting"
+                bullets += [playerTurret.shoot()]
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
                 playerTank.go("sup")
@@ -100,13 +103,12 @@ while True:
                 playerTank.go("sdown")
             if event.key == pygame.K_d:
                 playerTank.go("sright")
-        if event.type == pygame.K_SPACE:
-                bullets += [playerTurret.shoot()]
+        
         
     for bullet in bullets:
         bullet.update(size)
         
-        
+    print len(bullets)
         
     playerTank.collide(enemyTank)
     for block in blocks:
@@ -130,7 +132,9 @@ while True:
     screen.blit(playerTurret.image, playerTurret.rect)
     for block in blocks:
         screen.blit(block.image, block.rect)
+    for bullet in bullets:
+        screen.blit(bullet.image, bullet.rect)
             
     pygame.display.flip()
     clock.tick(40)
-    print clock.get_fps()
+    #print clock.get_fps()

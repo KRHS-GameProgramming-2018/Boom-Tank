@@ -1,5 +1,6 @@
 import pygame, sys, math
 from Turret import *
+from Bullet import *
 
 class PlayerTurret2(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
@@ -14,10 +15,18 @@ class PlayerTurret2(Ball):
         self.rect = self.image.get_rect(center = startPos)
         self.frame = 0;
         self.images = self.baseImage
+        self.y = "down"
         self.rect = self.baseImage.get_rect()
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
+        
+        self.fireTimer = 0
+        self.fireTimerMax = 60/15
+        self.bullets = []
+        self.firing = False
+        self.fireSound = pygame.mixer.Sound("PlayerTank/Sounds/miss.ogg")
+
         
     def setPos(self, pos):
         self.rect.center = pos
@@ -50,6 +59,13 @@ class PlayerTurret2(Ball):
     def update(self, size, center):
         #Ball.update(self, size)
         self.rect.center = center
+        
+        if self.firing:
+            if self.fireTimer < self.fireTimerMax:
+                self.fireTimer += 1
+            else:
+                self.fireTimer = 0
+                self.firing = False
         
         
     def headTo(self, pos):
@@ -90,6 +106,32 @@ class PlayerTurret2(Ball):
         rot_image = rot_image.subsurface(rot_rect)
         self.image = rot_image
         
-    def shoot(self, angle, pos):
-        return Bullet
+  
+        
+        
+    def shoot(self):
+        if self.firing:
+            pass
+        else:
+            self.fireSound.play(0);
+            self.firing = True
+            self.fireTimer = 0
+            print self.rect.center, self.y
+            if self.y == "down":
+                speed = [0,7]
+                image = "Ball.png"
+                print "downnn"
+            if self.y == "up":
+                speed = [0,-7]
+                image = "Ball.png"
+            if self.y == "left":
+                speed = [-7,0]
+                image = "Ball.png"
+            if self.y == "right":
+                speed = [7,0]
+                image = "Ball.png"
+            
+            return Bullet(self.angle, self.rect.center) 
+            
+            
         

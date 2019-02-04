@@ -92,7 +92,6 @@ class PlayerTankBody(Ball):
         
      
      
-     
     def bounceWall(self, size):
         width = size[0]
         height = size[1]

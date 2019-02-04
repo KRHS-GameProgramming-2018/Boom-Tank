@@ -45,6 +45,11 @@ class PlayerEnemy(Ball):
             self.speedx = 0
             
     def update(self, size):
+        if self.speed != [0,0]:
+            self.moving = True
+        else:
+            self.moving = False
+            
         Ball.update(self, size)
         
         
@@ -74,46 +79,9 @@ class PlayerEnemy(Ball):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
         
-        
-    def headTo(self, pos):
-        self.goal = pos
-        if self.rect.centerx > pos[0]:
-            self.speedx = -self.maxSpeed
-        elif self.rect.centerx < pos[0]:
-            self.speedx = self.maxSpeed
-        else:
-            self.speedx = 0
-            
-        if self.rect.centery > pos[1]:
-            self.speedy = -self.maxSpeed
-        elif self.rect.centery < pos[1]:
-            self.speedy = self.maxSpeed
-        else:
-            self.speedy = 0
-            
-        print self.speedx, self.speedy
-            
-    def move(self):
-        if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
-            self.speedx = 0
-        if self.goal[1]-self.maxSpeed <= self.rect.centery <= self.goal[1]+self.maxSpeed:
-            self.speedy = 0
-        self.speed = [self.speedx, self.speedy]
-        self.rect = self.rect.move(self.speed)
-
-    def rotate(self, point):
-        mousePos = pygame.mouse.get_pos()
-        mousePosPlayerX = mousePos[0] - self.rect.center[0]
-        mousePosPlayerY = mousePos[1] - self.rect.center[1]
-        self.angle = ((math.atan2(mousePosPlayerY, mousePosPlayerX))/math.pi)*180
-        self.angle = -self.angle
-        rot_image = pygame.transform.rotate(self.baseImage, self.angle)
-        rot_rect = self.rect.copy()
-        rot_rect.center = rot_image.get_rect().center
-        rot_image = rot_image.subsurface(rot_rect)
-        self.image = rot_image
-        
-        
+     
+     
+     
     def bounceWall(self, size):
         width = size[0]
         height = size[1]
@@ -156,4 +124,13 @@ class PlayerEnemy(Ball):
                                 return True
         return False
 
-
+        
+        
+    def explode(self, bullet):
+        if self.rect.right > bullet.rect.left:
+            if self.rect.left < bullet.rect.right:
+                if self.rect.top < bullet.rect.bottom:
+                    if self.rect.bottom > bullet.rect.top:
+                        self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
+                        self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
+                        pygame.QUIT

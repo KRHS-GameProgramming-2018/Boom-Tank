@@ -27,7 +27,7 @@ enemyTank = PlayerEnemy(6, [width/4, height/4])
 
 
 
-bullets = []
+
 
 bullets = []
 

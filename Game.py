@@ -79,6 +79,7 @@ while True:
         #print event.type
         if event.type == pygame.QUIT:
             sys.exit()
+        #if bullet.collide(playerTank):
         if event.type == pygame.MOUSEMOTION:
             playerTurret.rotate(event.pos)
         if event.type == pygame.KEYDOWN:
@@ -105,19 +106,22 @@ while True:
         
     for bullet in bullets:
         bullet.update(size)
+        bullet.collide(playerTank)
+        bullet.collide(enemyTank)
+        bullet.bounceWall
         
     #print len(bullets)
         
     playerTank.collide(enemyTank)
+   
     for block in blocks:
         playerTank.collide(block)
+        
         
     
                 
     enemyTank.update(size)  
     enemyTurret.update(size, enemyTank.rect.center)
-    for bullet in bullets:
-        screen.blit(bullet.image, bullet.rect)          
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)
     
@@ -132,6 +136,8 @@ while True:
         screen.blit(block.image, block.rect)
     for bullet in bullets:
         screen.blit(bullet.image, bullet.rect)
+    for bullet in bullets:
+        screen.blit(bullet.image, bullet.rect)  
             
     pygame.display.flip()
     clock.tick(40)

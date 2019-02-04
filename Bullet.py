@@ -19,7 +19,7 @@ class Bullet(Ball):
         self.speedx = self.maxSpeed*math.cos(math.radians(angle))
         self.speedy = -self.maxSpeed*math.sin(math.radians(angle))
         self.speed = [self.speedx, self.speedy]
-        print self.speed
+        
         
     def headTo(self, pos):
         self.goal = pos
@@ -40,7 +40,6 @@ class Bullet(Ball):
     def move(self):
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
-        #print self.speed
         
     def go(self, d):
         d =  mousePosPlayerX, mousePosPlayerY 
@@ -65,12 +64,47 @@ class Bullet(Ball):
             self.speedx = 0
         if d == "sright":
             self.speedx = 0
+            
+    def bounceWall(self, size):
+        width = 950
+        height = 750
+        size = (width, height)
+        if self.rect.left < 0 or self.rect.right > width:
+            if not self.didBounceX:
+                self.speedx = 0
+                self.didBounceX = False
+        if self.rect.top < 0 or self.rect.bottom > height:
+            if not self.didBounceY:
+                self.speedy = 0
+                self.didBounceY = False   
+        
         
     def collide(self, other):
-        if self.rect.right > other.rect.left:
-            if self.rect.left < other.rect.right:
-                if self.rect.top < other.rect.bottom:
-                    if self.rect.bottom > other.rect.top:
-                        if self.radius + other.radius > self.getDist(other.rect.center):
-                            self.alive = False
+        if not(self == other):
+            if self.rect.right > other.rect.left:
+                if self.rect.left < other.rect.right:
+                    if self.rect.top < other.rect.bottom:
+                        if self.rect.bottom > other.rect.top:
+                            if self.radius + other.radius > self.getDist(other.rect.center):
+                                if not self.didBounceX:
+                                    if self.speedx > 1: #right
+                                        if self.rect.centerx < other.rect.centerx:
+                                            self.speedx = 0
+                                            self.didBounceX = True
+                                    if self.speedx < 1: #left
+                                        if self.rect.centerx > other.rect.centerx:
+                                            self.speedx = 0
+                                            self.didBounceX = True
+                                            
+                                if not self.didBounceY:
+                                    if self.speedy > 1: #down
+                                        if self.rect.centery < other.rect.centery:
+                                            self.speedy = 0
+                                            self.didBounceY = True
+                                    if self.speedy < 1: #up
+                                        if self.rect.centery > other.rect.centery:
+                                            self.speedy  = 0
+                                            self.didBounceY = True
+
+                                return True
         return False

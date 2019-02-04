@@ -20,9 +20,9 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-playerTurret = PlayerTurret(5, [width/2, height/2])
+playerTurret = PlayerTurret(3, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
-playerTank = PlayerTankBody(2, [width/3, height/3])
+playerTank = PlayerTankBody(3, [width/3, height/3])
 enemyTank = PlayerEnemy(6, [width/4, height/4])
 
 
@@ -30,7 +30,7 @@ enemyTank = PlayerEnemy(6, [width/4, height/4])
 
 bullets = []
 
-bullets = []
+
 
 bgColor = 0,0,0
 
@@ -92,7 +92,6 @@ while True:
             if event.key == pygame.K_d:
                 playerTank.go("right")
             if event.key == pygame.K_SPACE:
-                print "shooting"
                 bullets += [playerTurret.shoot()]
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_w:
@@ -108,7 +107,7 @@ while True:
     for bullet in bullets:
         bullet.update(size)
         
-    print len(bullets)
+    #print len(bullets)
         
     playerTank.collide(enemyTank)
     for block in blocks:

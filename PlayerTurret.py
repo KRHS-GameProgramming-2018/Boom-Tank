@@ -110,7 +110,6 @@ class PlayerTurret(Ball):
         
         
     def shoot(self):
-        print "bang"
         if self.firing:
             pass
         else:
@@ -121,6 +120,7 @@ class PlayerTurret(Ball):
             if self.y == "down":
                 speed = [0,7]
                 image = "Ball.png"
+                print "downnn"
             if self.y == "up":
                 speed = [0,-7]
                 image = "Ball.png"
@@ -131,7 +131,7 @@ class PlayerTurret(Ball):
                 speed = [7,0]
                 image = "Ball.png"
             
-            return Bullet(image, speed, self.rect.center) 
+            return Bullet(self.angle, self.rect.center) 
             
             
         

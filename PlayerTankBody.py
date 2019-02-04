@@ -13,7 +13,11 @@ class PlayerTankBody(Ball):
         self.frame = 0;
         self.image = self.imageE
         self.rect = self.image.get_rect()
-            
+        
+        self.moveSound = pygame.mixer.Sound("PlayerTank/Sounds/moving.wav")
+        self.moving = False;
+        self.playingMoving = False
+        
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -45,6 +49,18 @@ class PlayerTankBody(Ball):
             self.speedx = 0
             
     def update(self, size):
+        if self.speed != [0,0]:
+            self.moving = True
+        else:
+            self.moving = False
+        
+        if self.moving and not self.playingMoving:
+            self.moveSound.play(-1);
+            self.playingMoving = True;
+        elif not self.moving and self.playingMoving:
+            self.moveSound.fadeout(500);
+            self.playingMoving = False;
+            
         Ball.update(self, size)
         
         

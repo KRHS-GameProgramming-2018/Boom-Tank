@@ -25,6 +25,8 @@ class PlayerTurret(Ball):
         self.fireTimerMax = 60/15
         self.bullets = []
         self.firing = False
+        self.fireSound = pygame.mixer.Sound("PlayerTank/Sounds/miss.ogg")
+
         
     def setPos(self, pos):
         self.rect.center = pos
@@ -111,6 +113,7 @@ class PlayerTurret(Ball):
         if self.firing:
             pass
         else:
+            self.fireSound.play(0);
             self.firing = True
             self.fireTimer = 0
             print self.rect.center, self.y

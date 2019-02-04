@@ -1,8 +1,7 @@
 import pygame, sys, math, random
-import pygame, sys, math, random
+import pygame, sys, math, random         
 from Turret import *
 from PlayerTurret import *
-from TankBody import *
 from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *

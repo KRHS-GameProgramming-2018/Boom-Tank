@@ -25,8 +25,6 @@ playerTank = PlayerTankBody(2, [width/3, height/3])
 enemyTank = PlayerEnemy(6, [width/4, height/4])
 
 
-bullets = []
-
 bgColor = 0,0,0
 
 bgPic = pygame.image.load("wood.png")
@@ -66,6 +64,8 @@ playerTank.rect.center = [85,85]
 enemyTank.rect.center = [500,500]
 
 balls = []
+bullets = []
+
 
 mposX = 0
 mposY = 0
@@ -104,7 +104,11 @@ while True:
     for bullet in bullets:
         bullet.update(size)
         bullet.collide(enemyTank)
-        bullet.collide(block)
+        for block in blocks:
+            bullet.collide(block)
+        bullet.bounceWall(size)
+        if not bullet.living:
+            bullets.remove(bullet)
         
     print len(bullets)
         
@@ -114,7 +118,7 @@ while True:
         playerTank.collide(block)
         
         
-        
+
     
                 
     enemyTank.update(size)  
@@ -133,8 +137,7 @@ while True:
         screen.blit(block.image, block.rect)
     for bullet in bullets:
         screen.blit(bullet.image, bullet.rect)
-    for bullet in bullets:
-        screen.blit(bullet.image, bullet.rect)  
+    
             
     pygame.display.flip()
     clock.tick(40)

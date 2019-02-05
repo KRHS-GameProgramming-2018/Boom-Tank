@@ -13,6 +13,8 @@ class Bullet(Ball):
         self.kind = "bullet"
         self.lives = 1
         self.maxSpeed = 10
+        self.didBounceY = True   
+
         
         #print angle
         

@@ -103,9 +103,8 @@ while True:
         
     for bullet in bullets:
         bullet.update(size)
-        bullet.collide(playerTank)
         bullet.collide(enemyTank)
-        bullet.bounceWall
+        bullet.collide(block)
         
     print len(bullets)
         
@@ -113,6 +112,7 @@ while True:
    
     for block in blocks:
         playerTank.collide(block)
+        
         
         
     

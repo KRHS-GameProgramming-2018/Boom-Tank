@@ -1,6 +1,7 @@
 
 import pygame, sys, math, random
 from Block import *
+from Bullet import *
 
 def loadLevel(levelFile):
     f = open(levelFile, 'r')

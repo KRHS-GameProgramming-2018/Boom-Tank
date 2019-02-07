@@ -143,6 +143,6 @@ class PlayerTankBody(Ball):
                     if self.rect.bottom > bullet.rect.top:
                         self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
                         self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
-                        pygame.QUIT
+                        self.living = False
         
 

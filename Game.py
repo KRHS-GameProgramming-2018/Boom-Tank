@@ -101,7 +101,7 @@ while True:
                 playerTank.go("sright")
         
         
-    for bullet in bullets:
+    for bullet in bullets: 
         bullet.update(size)
         bullet.collide(enemyTank)
         for block in blocks:

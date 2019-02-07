@@ -101,9 +101,12 @@ while True:
                 playerTank.go("sright")
         
         
+        
     for bullet in bullets: 
         bullet.update(size)
         bullet.collide(enemyTank)
+        if bullet.collide(enemyTank):
+            PlayerEnemy.explode(enemyTank, bullet)
         for block in blocks:
             bullet.collide(block)
         bullet.bounceWall(size)
@@ -113,6 +116,7 @@ while True:
     print len(bullets)
         
     playerTank.collide(enemyTank)
+    
    
     for block in blocks:
         playerTank.collide(block)

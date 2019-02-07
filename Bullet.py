@@ -68,9 +68,8 @@ class Bullet(Ball):
             self.speedx = 0
             
     def bounceWall(self, size):
-        width = 950
-        height = 750
-        size = (width, height)
+        width = size[0]
+        height = size[1]
         if self.rect.left < 0 or self.rect.right > width:
             if not self.didBounceX:
                 self.speedx = 0
@@ -78,7 +77,7 @@ class Bullet(Ball):
         if self.rect.top < 0 or self.rect.bottom > height:
             if not self.didBounceY:
                 self.speedy = 0
-                self.didBounceY = False   
+                self.didBounceY = False 
         
         
     def collide(self, other):

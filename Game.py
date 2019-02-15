@@ -60,7 +60,7 @@ blocks=loadLevel("Levels/"+str(lev)+".lvl")
 lev=10
 blocks=loadLevel("Levels/"+str(lev)+".lvl")
 
-playerTank.rect.center = [85,85]
+playerTank.rect.center = [100,100]
 enemyTank.rect.center = [500,500]
 
 balls = []
@@ -107,11 +107,15 @@ while True:
         bullet.collide(enemyTank)
         if bullet.collide(enemyTank):
             PlayerEnemy.explode(enemyTank, bullet)
+            enemyTank.living == False
         for block in blocks:
             bullet.collide(block)
         bullet.bounceWall(size)
         if not bullet.living:
             bullets.remove(bullet)
+        enemyTank.explode(bullet)
+        
+        
         
     print len(bullets)
         
@@ -121,8 +125,8 @@ while True:
     for block in blocks:
         playerTank.collide(block)
         
-        
-
+    #enemyTank.explode(bullet)
+    
     
                 
     enemyTank.update(size)  

@@ -18,6 +18,8 @@ class PlayerEnemy(Ball):
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
         
+        self.living = True
+        
     def setPos(self, pos):
         self.rect.center = pos
         
@@ -121,7 +123,7 @@ class PlayerEnemy(Ball):
                                             self.speedy  = 0
                                             self.didBounceY = True
 
-                                return True
+                            self.living = False
         return False
 
         
@@ -134,3 +136,5 @@ class PlayerEnemy(Ball):
                         self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
                         self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
                         self.living = False
+                        return True
+        return False

@@ -47,7 +47,6 @@ class Bullet(Ball):
         d =  mousePosPlayerX, mousePosPlayerY 
         if d == "up":
             self.speedy = -self.maxSpeed
-            
         if d == "down":
             self.speedy = self.maxSpeed
             self.image = self.imageS

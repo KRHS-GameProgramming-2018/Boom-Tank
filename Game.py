@@ -107,7 +107,8 @@ while True:
         bullet.collide(enemyTank)
         if bullet.collide(enemyTank):
             PlayerEnemy.explode(enemyTank, bullet)
-            enemyTank.living == False
+        if PlayerEnemy.living == False:
+                 PlayerEnemy.remove(enemyTank)
         for block in blocks:
             bullet.collide(block)
         bullet.bounceWall(size)

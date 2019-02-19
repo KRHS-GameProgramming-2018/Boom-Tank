@@ -1,6 +1,7 @@
 import pygame, sys, math
 from TankBody import *
 
+
 class PlayerEnemy(Ball):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.imageE = pygame.image.load("EnemyTanks/Images/enemytankright.png")
@@ -17,8 +18,10 @@ class PlayerEnemy(Ball):
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
-        
+        self.kind = "enemyTank"
         self.living = True
+        
+        
         
     def setPos(self, pos):
         self.rect.center = pos
@@ -133,8 +136,18 @@ class PlayerEnemy(Ball):
             if self.rect.left < bullet.rect.right:
                 if self.rect.top < bullet.rect.bottom:
                     if self.rect.bottom > bullet.rect.top:
-                        self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
-                        self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
+                        #self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
+                        #self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
                         self.living = False
                         return True
+                    
         return False
+        
+        
+        
+    
+        
+  
+        
+        
+        

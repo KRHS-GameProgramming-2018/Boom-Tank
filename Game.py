@@ -125,7 +125,7 @@ while True:
 
     
                 
-    enemyTank.update(size)  
+    enemyTank.update(size, pCenter)  
     enemyTurret.update(size, enemyTank.rect.center)
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)

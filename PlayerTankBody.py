@@ -19,6 +19,7 @@ class PlayerTankBody(Ball):
         self.playingMoving = False
         
         
+        
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
         
@@ -127,9 +128,7 @@ class PlayerTankBody(Ball):
                                             self.speedy = 0
                                             self.didBounceY = True
                                     if self.speedy < 1: #up
-                                        if self.rect.centery > other.rect.centery:
-                                            self.speedy  = 0
-                                            self.didBounceY = True
+                                       self.didBounceY = True
 
                                 return True
         return False
@@ -144,5 +143,8 @@ class PlayerTankBody(Ball):
                         self.imageEX = pygame.image.load("PlayerTank/Images/tankright.png")
                         self.imagePL = pygame.image.load("PlayerTank/Images/tankleft.png")
                         self.living = False
+                        return True
+                        
+        return False
         
 

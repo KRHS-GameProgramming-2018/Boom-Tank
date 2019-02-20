@@ -126,29 +126,29 @@ class PlayerEnemy(Ball):
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
-                        if other.kind == "bullet":
-                            self.lives += -1
+                        #if other.kind == "bullet":
+                            #self.lives += -1
                         if not self.didBounceX:
                             if self.speedx > 1: #right
                                 if self.rect.centerx < other.rect.centerx:
                                     self.speedx = -self.speedx
-                                    self.move()
-                                    self.directMove()
+                                    #self.move()
+                                    #self.directMove()
                                     self.didBounceX = True
                                    
                             if self.speedx < 1: #left
                                 if self.rect.centerx > other.rect.centerx:
                                     self.speedx = -self.speedx
-                                    self.move()
-                                    self.directMove()
+                                    #self.move()
+                                    #self.directMove()
                                     self.didBounceX = True
                                     
                         if not self.didBounceY:
                             if self.speedy > 1: #down
                                 if self.rect.centery < other.rect.centery:
                                     self.speedy = -self.speedy
-                                    self.move()
-                                    self.directMove()
+                                    #self.move()
+                                    #self.directMove()
                                     self.didBounceY = True
                                     # ~ if self.rect.bottom > other.rect.top:
                                         # ~ self.rect.centery = other.rect.centery - ((self.rect.height)/2 + (other.rect.height)/2)
@@ -156,8 +156,8 @@ class PlayerEnemy(Ball):
                             if self.speedy < 1: #up
                                 if self.rect.centery > other.rect.centery:
                                     self.speedy  = -self.speedy
-                                    self.move()
-                                    self.directMove()
+                                    #self.move()
+                                    #self.directMove()
                                     self.didBounceY = True
                                     # ~ if self.rect.top < other.rect.bottom:
                                         # ~ self.rect.centery = other.rect.centery + (self.rect.height)/2 + (other.rect.height)/2

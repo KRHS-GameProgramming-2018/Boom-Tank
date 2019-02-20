@@ -154,11 +154,10 @@ while True:
         
         
     print len(bullets)
-        
     playerTank.collide(enemyTank)
     
                 
-    enemyTank.update(size, pCenter)  
+    enemyTank.update(size, playerTank.rect.center) 
     enemyTurret.update(size, enemyTank.rect.center)
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)

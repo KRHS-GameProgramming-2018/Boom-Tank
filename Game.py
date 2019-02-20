@@ -158,7 +158,7 @@ while True:
     
                 
     enemyTank.update(size, playerTank.rect.center)
-    if not enemyTank.alive:
+    if not enemyTank.living:
                 enemyTank.remove(Ball) 
     enemyTurret.update(size, enemyTank.rect.center)
     playerTank.update(size)

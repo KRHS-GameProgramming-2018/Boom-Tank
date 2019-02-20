@@ -74,7 +74,7 @@ class PlayerEnemy(Ball):
                    # print "Player Below"
                 
         else:
-            compass = 0
+            compass = random.randint(0,3)
             
         
         

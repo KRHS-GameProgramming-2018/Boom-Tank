@@ -71,38 +71,27 @@ mposX = 0
 mposY = 0
 
 
-# levelnum = 1
-# level = loadLevel("Levels/1.lvl")
-# blocks = level[1] 
-# bullets = []
+mode = "start"
 
-# bgColor = 0,0,0
+go = True
 
 
-# while True:
-    # while not pb.alive:
-        # for event in pygame.event.get():
-            # #print event.type
-            # if event.type == pygame.QUIT:
-                # sys.exit()
-            # if event.type == pygame.KEYDOWN:
-                    # if event.key == pygame.K_RETURN:
-                        # levelnum = 1
-                        # bullets = []
-                        # level = loadLevel("Levels/"+str(levelnum)+".lvl")
-                        # blocks = level["blocks"]
-                        # mobs = level["enemies"]
-                        # pb = Player(3, level["player"])
-                    # if event.key == pygame.K_ESCAPE:
-                        # sys.exit()
-                    # if event.key == pygame.K_t:
-                        # paused = True
-                        # while paused:
-                            # for event in pygame.event.get():
-                                # if event.type == pygame.QUIT: sys.exit()
-                                # if event.type == pygame.KEYDOWN:
-                                    # if event.key == pygame.K_t:
-                                        # paused = False
+while go:
+    startimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
+    #deathimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
+   #STARTSCREEN
+ 
+    while mode == "start":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                #pygame.time.delay(1000)
+                mode = "play"
+        screen.blit(startimage, (0,0))
+        pygame.display.flip()
+        clock.tick(60)
 
 while True:
     for event in pygame.event.get():

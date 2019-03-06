@@ -138,37 +138,39 @@ while True:
         
     for bullet in bullets: 
         bullet.update(size)
-        bullet.collide(enemyTank)
-        if bullet.collide(enemyTank):
-            PlayerEnemy.explode(enemyTank, bullet)
-        if enemyTank.living == False:
-                 PlayerEnemy.remove(enemyTank)
+        if enemyTank:
+            bullet.collide(enemyTank)
         for block in blocks:
             bullet.collide(block)
             playerTank.collide(block)
         bullet.bounceWall(size)
         if not bullet.living:
             bullets.remove(bullet)
-        enemyTank.explode(bullet)
+        if enemyTank:
+            enemyTank.explode(bullet)
         
         
         
     print len(bullets)
-    playerTank.collide(enemyTank)
-    
-                
-    enemyTank.update(size, playerTank.rect.center)
-    if not enemyTank.living:
-                enemyTank.remove(Ball) 
-    enemyTurret.update(size, enemyTank.rect.center)
+    if enemyTank:
+        playerTank.collide(enemyTank)
+    if enemyTurret:
+        enemyTurret.update(size, enemyTank.rect.center)
     playerTank.update(size)
     playerTurret.update(size, playerTank.rect.center)
-    
+    if enemyTank:
+        enemyTank.update(size, playerTank.rect.center)
+    if enemyTank:
+        if not enemyTank.living:
+            enemyTank = None 
+            enemyTurret = None
     
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)
-    screen.blit(enemyTank.image, enemyTank.rect)
-    screen.blit(enemyTurret.image, enemyTurret.rect)
+    if enemyTank:
+        screen.blit(enemyTank.image, enemyTank.rect)
+    if enemyTurret:
+        screen.blit(enemyTurret.image, enemyTurret.rect)
     screen.blit(playerTank.image, playerTank.rect)
     screen.blit(playerTurret.image, playerTurret.rect)
     for block in blocks:

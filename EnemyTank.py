@@ -187,7 +187,7 @@ class PlayerEnemy(Ball):
         if self.rect.top < other.rect.bottom or self.rect.bottom > other.rect.top:
             if not self.didBounceY:
                 self.speedy = -self.speedy
-                self.didBounceY = True
+                self.didBounceY = True  
         
         
         

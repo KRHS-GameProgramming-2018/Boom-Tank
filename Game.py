@@ -31,37 +31,8 @@ bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
 lev=1
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
+blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
 
-lev=2
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=3
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=4
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=5
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=6
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=7
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=8
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=9
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-lev=10
-blocks=loadLevel("Levels/"+str(lev)+".lvl")
-
-playerTank.rect.center = [100,100]
-enemyTank.rect.center = [500,500]
 
 balls = []
 bullets = []
@@ -71,9 +42,9 @@ mposX = 0
 mposY = 0
 
 
-mode = "start"
+#mode = "start"
 
-go = True
+#go = True
 
 
 # while go:
@@ -151,8 +122,10 @@ while True:
         enemyTank.update(size, playerTank.rect.center)
     if enemyTank:
         if not enemyTank.living:
-            enemyTank = None 
-            enemyTurret = None
+            if lev < 10:
+                lev += 1
+                blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
+                enemyTank.living = True
     
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)

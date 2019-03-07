@@ -76,22 +76,22 @@ mode = "start"
 go = True
 
 
-while go:
-    startimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
-    #deathimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
-   #STARTSCREEN
+# while go:
+    # startimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
+    # #deathimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
+   # #STARTSCREEN
  
-    while mode == "start":
-        for event in pygame.event.get():
-            #print event.type
-            if event.type == pygame.QUIT:
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                #pygame.time.delay(1000)
-                mode = "play"
-        screen.blit(startimage, (0,0))
-        pygame.display.flip()
-        clock.tick(60)
+    # while mode == "start":
+        # for event in pygame.event.get():
+            # #print event.type
+            # if event.type == pygame.QUIT:
+                # sys.exit()
+            # if event.type == pygame.KEYDOWN:
+                # #pygame.time.delay(1000)
+                # mode = "play"
+        # screen.blit(startimage, (0,0))
+        # pygame.display.flip()
+        # clock.tick(60)
 
 while True:
     for event in pygame.event.get():

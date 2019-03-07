@@ -109,7 +109,6 @@ while True:
         #print event.type
         if event.type == pygame.QUIT:
             sys.exit()
-        #if bullet.collide(playerTank):
         if event.type == pygame.MOUSEMOTION:
             playerTurret.rotate(event.pos)
         if event.type == pygame.KEYDOWN:

@@ -98,7 +98,7 @@ while True:
     for bullet in bullets: 
         bullet.update(size)
         if enemyTank:
-           bullet.collide(enemyTank)
+            bullet.collide(enemyTank)
         for block in blocks:
             bullet.collide(block)
             playerTank.collide(block)
@@ -116,6 +116,7 @@ while True:
     if enemyTurret:
         enemyTurret.update(size, enemyTank.rect.center)
     playerTank.update(size)
+    playerTank.collide
     playerTurret.update(size, playerTank.rect.center)
     if enemyTank:
         enemyTank.update(size, playerTank.rect.center)

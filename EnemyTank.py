@@ -52,7 +52,7 @@ class PlayerEnemy(Ball):
         print self.speedx, self.speedy
             
     def directMove(self, pCenter=None):
-        if pCenter and self.getDist(pCenter) < 250:
+        if pCenter and self.getDist(pCenter) < 400:
             self.tracking = True
             xDif = abs(self.rect.centerx - pCenter[0])
             yDif = abs(self.rect.centery - pCenter[1])

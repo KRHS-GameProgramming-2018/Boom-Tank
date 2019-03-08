@@ -17,13 +17,13 @@ class PlayerEnemy(Ball):
         
         self.maxspeed = speed
         self.goal = [0,0]
+        self.tracking = True
+        self.compass = 0
         self.directMove()
         
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
         self.detectionRadius = 96
             
-        self.goal = [0,0]
-        self.kind = "enemyTank"
         self.living = True
         
         
@@ -53,6 +53,7 @@ class PlayerEnemy(Ball):
             
     def directMove(self, pCenter=None):
         if pCenter and self.getDist(pCenter) < 250:
+            self.tracking = True
             xDif = abs(self.rect.centerx - pCenter[0])
             yDif = abs(self.rect.centery - pCenter[1])
             
@@ -60,46 +61,50 @@ class PlayerEnemy(Ball):
             
             if xDif > yDif:
                 if self.rect.centerx < pCenter[0]:
-                    compass = 1
-                   # print "Player Right"
+                    self.compass = 1
+                    print "Player Right"
                 else:
-                    compass = 3
-                   # print "Player Left"
+                    self.compass = 3
+                    print "Player Left"
             else:
                 if self.rect.centery > pCenter[1]:
-                    compass = 0
-                   # print "Player Above"
+                    self.compass = 0
+                    print "Player Above"
                 else:
-                    compass = 2
-                   # print "Player Below"
+                    self.compass = 2
+                    print "Player Below"
                 
         else:
-            compass = random.randint(0,3)
-            
-        
-        
-        if compass == 0:
+            if self.tracking: 
+                self.tracking = False
+                self.compass = random.randint(0, 3)
+            elif random.randint (0, 60) == 0:
+                self.compass = random.randint(0, 3)
+                
+        if self.compass == 0:
             self.moving = "Y"
             self.speedy = -self.maxspeed
             self.speedx = 0
             self.images = self.imageN
-        elif compass == 0:
+        elif self.compass == 1:
             self.moving = "X"
             self.speedx = self.maxspeed
             self.speedy = 0
-            self.images = self.imageE
-        elif compass == 2:
+            self.images = self.imageW
+        elif self.compass == 2:
             self.moving = "Y"
             self.speedy = self.maxspeed
             self.speedx = 0
             self.images = self.imageS
-        elif compass == 3:
+        elif self.compass == 3:
             self.moving = "X"
             self.speedx = -self.maxspeed
             self.speedy = 0
-            self.images = self.imageW
+            self.images = self.imageE
         # ~ self.image = self.images[self.frame]
         # ~ self.rect = self.image.get_rect()
+            
+        self.rect = self.rect.move(self.speed)
         
     def update(self, size, pCenter):
         # ~ print self.rect.center

@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size)
 playerTurret = PlayerTurret(5, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(2, [width/3, height/3])
-enemyTank = PlayerEnemy(6, [width/4, height/4])
+enemyTank = PlayerEnemy(2, [width/4, height/4])
 
 
 bgColor = 0,0,0
@@ -101,13 +101,16 @@ while True:
             bullet.collide(enemyTank)
         for block in blocks:
             bullet.collide(block)
-            playerTank.collide(block)
+            
         bullet.bounceWall(size)
         if not bullet.living:
             bullets.remove(bullet)
         if enemyTank:
             enemyTank.explode(bullet)
-        
+    
+    for block in blocks:
+        playerTank.collide(block)    
+        enemyTank.collide(block)    
         
         
     print len(bullets)

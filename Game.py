@@ -21,8 +21,8 @@ screen = pygame.display.set_mode(size)
 
 playerTurret = PlayerTurret(5, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
-playerTank = PlayerTankBody(2, [width/3, height/3])
-enemyTank = PlayerEnemy(2, [width/4, height/4])
+playerTank = PlayerTankBody(3, [width/3, height/3])
+enemyTank = PlayerEnemy(3, [width/4, height/4])
 
 
 bgColor = 0,0,0
@@ -107,22 +107,25 @@ while True:
             bullets.remove(bullet)
         if enemyTank:
             enemyTank.explode(bullet)
-    
-    for block in blocks:
-        playerTank.collide(block)    
-        enemyTank.collide(block)    
+    if playerTank:
+        for block in blocks:
+            playerTank.collide(block)    
+            enemyTank.collide(block)    
         
         
     print len(bullets)
-    if enemyTank:
-        playerTank.collide(enemyTank)
+    if playerTank:
+        if enemyTank:
+            if playerTank.collide(enemyTank):
+                playerTank = None
     if enemyTurret:
         enemyTurret.update(size, enemyTank.rect.center)
-    playerTank.update(size)
-    playerTank.collide
-    playerTurret.update(size, playerTank.rect.center)
-    if enemyTank:
-        enemyTank.update(size, playerTank.rect.center)
+    if playerTank:
+        playerTank.update(size)
+        playerTurret.update(size, playerTank.rect.center)
+    if playerTank:
+        if enemyTank:
+            enemyTank.update(size, playerTank.rect.center)
     if enemyTank:
         if not enemyTank.living:
             if lev < 10:
@@ -136,8 +139,9 @@ while True:
         screen.blit(enemyTank.image, enemyTank.rect)
     if enemyTurret:
         screen.blit(enemyTurret.image, enemyTurret.rect)
-    screen.blit(playerTank.image, playerTank.rect)
-    screen.blit(playerTurret.image, playerTurret.rect)
+    if playerTank:
+        screen.blit(playerTank.image, playerTank.rect)
+        screen.blit(playerTurret.image, playerTurret.rect)
     for block in blocks:
         screen.blit(block.image, block.rect)
     for bullet in bullets:

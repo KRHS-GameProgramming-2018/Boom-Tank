@@ -84,7 +84,7 @@ while True:
                 print "shooting"
                 bullets += [playerTurret.shoot()]
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w:
+            if event.key == pygame.K_w: 
                 playerTank.go("sup")
             if event.key == pygame.K_a:
                 playerTank.go("sleft")

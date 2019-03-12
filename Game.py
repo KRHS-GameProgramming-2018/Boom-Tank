@@ -72,26 +72,28 @@ while True:
         if event.type == pygame.MOUSEMOTION:
             playerTurret.rotate(event.pos)
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_w:
-                playerTank.go("up")
-            if event.key == pygame.K_a:
-                playerTank.go("left")
-            if event.key == pygame.K_s:
-                playerTank.go("down")
-            if event.key == pygame.K_d:
-                playerTank.go("right")
-            if event.key == pygame.K_SPACE:
-                print "shooting"
-                bullets += [playerTurret.shoot()]
+            if playerTank:
+                if event.key == pygame.K_w:
+                    playerTank.go("up")
+                if event.key == pygame.K_a:
+                    playerTank.go("left")
+                if event.key == pygame.K_s:
+                    playerTank.go("down")
+                if event.key == pygame.K_d:
+                    playerTank.go("right")
+                if event.key == pygame.K_SPACE:
+                    print "shooting"
+                    bullets += [playerTurret.shoot()]
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_w: 
-                playerTank.go("sup")
-            if event.key == pygame.K_a:
-                playerTank.go("sleft")
-            if event.key == pygame.K_s:
-                playerTank.go("sdown")
-            if event.key == pygame.K_d:
-                playerTank.go("sright")
+            if playerTank:
+                if event.key == pygame.K_w: 
+                    playerTank.go("sup")
+                if event.key == pygame.K_a:
+                    playerTank.go("sleft")
+                if event.key == pygame.K_s:
+                    playerTank.go("sdown")
+                if event.key == pygame.K_d:
+                    playerTank.go("sright")
        
             
         

@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size)
 playerTurret = PlayerTurret(5, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(3, [width/3, height/3])
-enemyTank = PlayerEnemy(3, [width/4, height/4])
+enemyTank = PlayerEnemy(5, [width/4, height/4])
 
 
 bgColor = 0,0,0

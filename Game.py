@@ -31,10 +31,8 @@ bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
 lev=1
-levelnum = 1
-level = loadLevel("Levels/1.lvl")
-blocks = level["Block"]
-enemyTank = level["enemyTank"]
+blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
+
 
 balls = []
 bullets = []
@@ -134,11 +132,10 @@ while True:
             enemyTank.update(size, playerTank.rect.center)
     if enemyTank:
         if not enemyTank.living:
-             levelnum += 1
-             bullets = []
-             level = loadLevel("Levels/"+str(levelnum)+".lvl")
-             blocks = level["Block"]
-             enemyTank = level["enemyTank"]
+            if lev < 10:
+                lev += 1
+                blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
+                enemyTank.living = True
                 
                 
     

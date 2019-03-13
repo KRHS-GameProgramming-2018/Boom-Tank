@@ -8,10 +8,8 @@ def loadLevel(levelFile):
     lines = f.readlines()
     f.close()
     
-    level = level = {"Block":[],
-             "playerTank":[0,0],
-             "enemyTank":[],
-             }
+    
+    level = []
     
     #Block Size is 50x50
     
@@ -30,13 +28,14 @@ def loadLevel(levelFile):
     for y, line in enumerate(lines):
         for x, character in enumerate(line):
             if character == '#':
-                level["Block"] += [([x*50+25, y*50+25])]
+                level += [Block([x*50+25, y*50+25])]
             if character == 'x':
-                level["enemyTank"] += [(4, [x*50+25, y*50+25])]
+                ppos = [x*50+25, y*50+25]
             if character == 'y':
-                level["playerTank"] += [(4, [x*50+25, y*50+25])]             
-    return level
+                epos = [x*50+25, y*50+25]
+             
+    return level, ppos, epos
     
     
     
-# ~ loadLevel("Levels/1.lv)
+# ~ loadLevel("Levels/1.lvl")

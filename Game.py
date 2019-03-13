@@ -22,7 +22,7 @@ screen = pygame.display.set_mode(size)
 playerTurret = PlayerTurret(5, [width/2, height/2])
 enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(3, [width/3, height/3])
-enemyTank = PlayerEnemy(5, [width/4, height/4])
+enemyTank = PlayerEnemy(3, [width/4, height/4])
 
 
 bgColor = 0,0,0
@@ -31,8 +31,10 @@ bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
 lev=1
-blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
-
+levelnum = 1
+level = loadLevel("Levels/1.lvl")
+blocks = level["Block"]
+enemyTank = level["enemyTank"]
 
 balls = []
 bullets = []
@@ -112,9 +114,9 @@ while True:
         if enemyTank:
             enemyTank.explode(bullet)
     if playerTank:
-        for block in blocks:
-            playerTank.collide(block)    
-            enemyTank.collide(block)    
+        for Block in blocks:
+            playerTank.collide(Block)    
+            enemyTank.collide(Block)    
         
         
     print len(bullets)
@@ -132,10 +134,11 @@ while True:
             enemyTank.update(size, playerTank.rect.center)
     if enemyTank:
         if not enemyTank.living:
-            if lev < 10:
-                lev += 1
-                blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
-                enemyTank.living = True
+             levelnum += 1
+             bullets = []
+             level = loadLevel("Levels/"+str(levelnum)+".lvl")
+             blocks = level["Block"]
+             enemyTank = level["enemyTank"]
                 
     
     screen.fill(bgColor)
@@ -155,4 +158,4 @@ while True:
             
     pygame.display.flip()
     clock.tick(40)
-    #print clock.get_fps()
+    print clock.get_fps()

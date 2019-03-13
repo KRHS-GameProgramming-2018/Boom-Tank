@@ -1,8 +1,7 @@
 import pygame, sys, math
 from TankBody import *
 
-class PlayerTankBody(Ball
-):
+class PlayerTankBody(Ball):
     def __init__(self, maxSpeed, startPos=[550,-100]):
         self.imageE = pygame.image.load("PlayerTank/Images/tankright.png")
         self.imageW = pygame.image.load("PlayerTank/Images/tankleft.png")

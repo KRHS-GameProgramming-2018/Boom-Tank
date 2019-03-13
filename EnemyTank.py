@@ -52,7 +52,7 @@ class PlayerEnemy(Ball):
         print self.speedx, self.speedy
             
     def directMove(self, pCenter=None):
-        if pCenter and self.getDist(pCenter) < 400:
+        if pCenter and self.getDist(pCenter) < 600:
             self.tracking = True
             xDif = abs(self.rect.centerx - pCenter[0])
             yDif = abs(self.rect.centery - pCenter[1])
@@ -131,8 +131,7 @@ class PlayerEnemy(Ball):
             if self.rect.left < other.rect.right:
                 if self.rect.top < other.rect.bottom:
                     if self.rect.bottom > other.rect.top:
-                        #if other.kind == "bullet":
-                            #self.lives += -1
+                       
                         if not self.didBounceX:
                             if self.speedx > 1: #right
                                 if self.rect.centerx < other.rect.centerx:

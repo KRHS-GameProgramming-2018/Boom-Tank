@@ -137,6 +137,7 @@ while True:
                 blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
                 enemyTank.living = True
                 
+                
     
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)

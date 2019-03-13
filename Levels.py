@@ -8,6 +8,7 @@ def loadLevel(levelFile):
     lines = f.readlines()
     f.close()
     
+    
     level = []
     
     #Block Size is 50x50

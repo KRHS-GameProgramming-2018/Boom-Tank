@@ -119,8 +119,9 @@ while True:
     enemyTank.collide(Block)    
         
     print len(bullets)
-    if playerTank:
-        for enemyTank in enemyTanks:
+    
+    for enemyTank in enemyTanks:
+        if playerTank:
             if playerTank.collide(enemyTank):
                 playerTank = None
     for enemyTank in enemyTanks:

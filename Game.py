@@ -138,9 +138,11 @@ while True:
         if len(enemyTanks) <= 0:
             if lev < 10:
                 lev += 1
-                blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
-                for c in enemyTankCenters:
-                    enemyTanks += [PlayerEnemy(3, c)]
+            else:
+                lev = 1
+            blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+            for c in enemyTankCenters:
+                enemyTanks += [PlayerEnemy(3, c)]
                 
                 
     

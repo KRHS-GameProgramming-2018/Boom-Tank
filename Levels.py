@@ -10,6 +10,7 @@ def loadLevel(levelFile):
     
     
     level = []
+    epos = []
     
     #Block Size is 50x50
     
@@ -32,9 +33,7 @@ def loadLevel(levelFile):
             if character == 'x':
                 ppos = [x*50+25, y*50+25]
             if character == 'y':
-                epos = [x*50+25, y*50+25]
-            if character == 's':
-                epos = [x*50+25, y*50+25]
+                epos += [[x*50+25, y*50+25]]
              
     return level, ppos, epos
     

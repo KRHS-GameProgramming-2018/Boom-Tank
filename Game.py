@@ -116,12 +116,12 @@ while True:
             playerTank.collide(Block)    
             enemyTank.collide(Block)    
         
+    enemyTank.collide(Block)    
         
     print len(bullets)
     if playerTank:
         if enemyTank:
-            if playerTank.collide(enemyTank):
-                playerTank = None
+            enemyTank.update(size, playerTank.rect.center)
     if enemyTurret:
         enemyTurret.update(size, enemyTank.rect.center)
     if playerTank:
@@ -129,13 +129,19 @@ while True:
         playerTurret.update(size, playerTank.rect.center)
     if playerTank:
         if enemyTank:
-            enemyTank.update(size, playerTank.rect.center)
+            if playerTank.collide(enemyTank):
+                playerTank = None
+                lev = 1
+    
+                
+            
+            
     if enemyTank:
         if not enemyTank.living:
             if lev < 10:
                 lev += 1
                 blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
-                enemyTank.living = True
+                enemyTank.living = True   
                 
                 
     

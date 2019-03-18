@@ -5,7 +5,6 @@ from PlayerTurret import *
 from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
-from PlayerTurret2 import *
 from Bullet import *
 pygame.init()
 
@@ -20,9 +19,8 @@ size = width, height
 screen = pygame.display.set_mode(size)
 
 playerTurret = PlayerTurret(5, [width/2, height/2])
-enemyTurret = PlayerTurret2(8, [width/5, height/5])
 playerTank = PlayerTankBody(3, [width/3, height/3])
-enemyTank = PlayerEnemy(3, [width/4, height/4])
+enemyTanks = []
 
 
 bgColor = 0,0,0
@@ -31,8 +29,9 @@ bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
 lev=1
-blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
-
+blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+for c in enemyTankCenters:
+    enemyTanks += [PlayerEnemy(3, c)]
 
 balls = []
 bullets = []
@@ -101,7 +100,7 @@ while True:
         
     for bullet in bullets: 
         bullet.update(size)
-        if enemyTank:
+        for enemyTank in enemyTanks:
             bullet.collide(enemyTank)
         for block in blocks:
             bullet.collide(block)
@@ -109,42 +108,45 @@ while True:
         bullet.bounceWall(size)
         if not bullet.living:
             bullets.remove(bullet)
-        if enemyTank:
+        for enemyTank in enemyTanks:
             enemyTank.explode(bullet)
     if playerTank:
         for Block in blocks:
-            playerTank.collide(Block)    
-            enemyTank.collide(Block)    
+            playerTank.collide(Block)  
+            for enemyTank in enemyTanks:  
+                enemyTank.collide(Block)    
         
         
     print len(bullets)
     if playerTank:
-        if enemyTank:
+        for enemyTank in enemyTanks:
             if playerTank.collide(enemyTank):
                 playerTank = None
-    if enemyTurret:
-        enemyTurret.update(size, enemyTank.rect.center)
+    for enemyTank in enemyTanks:
+        enemyTank.turret.update(size, enemyTank.rect.center)
     if playerTank:
         playerTank.update(size)
         playerTurret.update(size, playerTank.rect.center)
     if playerTank:
-        if enemyTank:
+        for enemyTank in enemyTanks:
             enemyTank.update(size, playerTank.rect.center)
-    if enemyTank:
+    for enemyTank in enemyTanks:
         if not enemyTank.living:
+            enemyTanks.remove(enemyTank)
+        if len(enemyTanks) <= 0:
             if lev < 10:
                 lev += 1
-                blocks, playerTank.rect.center, enemyTank.rect.center = loadLevel("Levels/"+str(lev)+".lvl")
-                enemyTank.living = True
+                blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+                for c in enemyTankCenters:
+                    enemyTanks += [PlayerEnemy(3, c)]
                 
                 
     
     screen.fill(bgColor)
     screen.blit(bgPic, bgPicrect)
-    if enemyTank:
+    for enemyTank in enemyTanks:
         screen.blit(enemyTank.image, enemyTank.rect)
-    if enemyTurret:
-        screen.blit(enemyTurret.image, enemyTurret.rect)
+        screen.blit(enemyTank.turret.image, enemyTank.turret.rect)
     if playerTank:
         screen.blit(playerTank.image, playerTank.rect)
         screen.blit(playerTurret.image, playerTurret.rect)

@@ -30,7 +30,8 @@ class PlayerTurret(Ball):
         
     def setPos(self, pos):
         self.rect.center = pos
-        
+     
+    """
     def go(self, d):
         if d == "up":
             self.speedy = -self.maxSpeed
@@ -55,7 +56,7 @@ class PlayerTurret(Ball):
         if d == "sright":
             self.speedx = 0
         
-   
+    """
     def update(self, size, center):
         #Ball.update(self, size)
         self.rect.center = center

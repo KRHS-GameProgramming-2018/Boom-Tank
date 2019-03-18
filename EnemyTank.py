@@ -1,6 +1,6 @@
 import pygame, sys, math, random
 from TankBody import *
-
+from PlayerTurret import *
 
 class PlayerEnemy(Ball):
     def __init__(self, speed=5, startPos=[0,0]):
@@ -26,6 +26,7 @@ class PlayerEnemy(Ball):
             
         self.living = True
         
+        self.turret = PlayerTurret(speed, self.rect.center)
         
         
         self.lives = 1

@@ -1,5 +1,5 @@
 import pygame, sys, math
-from Turret import *
+#from Turret import *
 from Bullet import *
 
 class PlayerTurret(Ball):

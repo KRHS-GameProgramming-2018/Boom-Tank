@@ -116,7 +116,8 @@ while True:
             for enemyTank in enemyTanks:  
                 enemyTank.collide(Block)    
         
-    enemyTank.collide(Block)    
+    enemyTank.collide(Block)
+      
         
     print len(bullets)
     

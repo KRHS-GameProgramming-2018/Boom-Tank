@@ -1,8 +1,9 @@
 import pygame, sys, math
 
 
-class Ball():
-    def __init__(self, image, speed=[25,25], startPos=[0,0]):
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, image, speed=[5,5], startPos=[0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -44,31 +45,24 @@ class Ball():
             
     def collide(self, other):
         if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.didBounceX:
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = -self.speedx
-                                            self.didBounceX = True
-                                            
-                                if not self.didBounceY:
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = -self.speedy
-                                            self.didBounceY = True
-                                    if self.speedy < 1: #up
-                                        if self.rect.centery > other.rect.centery:
-                                            self.speedy  = -self.speedy
-                                            self.didBounceY = True
-
-                                return True
+            if not self.didBounceX:
+                if self.speedx > 1: #right
+                    if self.rect.centerx < other.rect.centerx:
+                        self.speedx = -self.speedx
+                        self.didBounceX = True
+                if self.speedx < 1: #left
+                    if self.rect.centerx > other.rect.centerx:
+                        self.speedx = -self.speedx
+                        self.didBounceX = True
+                        
+            if not self.didBounceY:
+                if self.speedy > 1: #down
+                    if self.rect.centery < other.rect.centery:
+                        self.speedy = -self.speedy
+                        self.didBounceY = True
+                if self.speedy < 1: #up
+                    if self.rect.centery > other.rect.centery:
+                        self.speedy  = -self.speedy
+                        self.didBounceY = True
+            return True
         return False
-

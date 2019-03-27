@@ -1,14 +1,15 @@
 import pygame, sys, math, random
 from PlayerTurret import *
-from PlayerTankBody import*
 
-class Bullet(Ball):
+class Bullet(Turret):
     def __init__(self, angle=0, startPos=[0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
+
         #PlayerTurret.__init__(self,  image, speed, startPos)
         self.baseImage = pygame.image.load("PlayerTank/Images/Ball.png")
         
        
-        Ball.__init__(self, "PlayerTank/Images/Ball.png", [0,0], startPos)
+        Turret.__init__(self, "PlayerTank/Images/Ball.png", [0,0], startPos)
         # ~ print self.rect.center, speed
         self.kind = "bullet"
         self.living = True

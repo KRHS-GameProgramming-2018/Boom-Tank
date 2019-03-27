@@ -2,14 +2,15 @@ import pygame, sys, math, random
 from TankBody import *
 from PlayerTurret import *
 
-class PlayerEnemy(Ball):
+class EnemyTank(TankBody):
     def __init__(self, speed=5, startPos=[0,0]):
+        pygame.sprite.Sprite.__init__(self, self.containers)
         self.imageE = pygame.image.load("EnemyTanks/Images/enemytankright.png")
         self.imageW = pygame.image.load("EnemyTanks/Images/enemytankleft.png")
         self.imageN = pygame.image.load("EnemyTanks/Images/enemytankup.png")
         self.imageS = pygame.image.load("EnemyTanks/Images/enemytankdown.png")
                        
-        Ball.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
+        TankBody.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
         
         self.frame = 0;
         self.image = self.imageE

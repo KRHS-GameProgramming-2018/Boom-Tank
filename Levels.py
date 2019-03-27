@@ -35,7 +35,7 @@ def loadLevel(levelFile):
             if character == 'y':
                 epos += [[x*50+25, y*50+25]]
              
-    return level, ppos, epos
+    return ppos, epos
     
     
     

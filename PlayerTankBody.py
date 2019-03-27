@@ -1,14 +1,15 @@
 import pygame, sys, math
-#from TankBody import *
+from TankBody import *
+from PlayerTurret import *
 
-class PlayerTankBody(Ball):
+class PlayerTankBody(TankBody):
     def __init__(self, maxSpeed, startPos=[550,-100]):
         self.imageE = pygame.image.load("PlayerTank/Images/tankright.png")
         self.imageW = pygame.image.load("PlayerTank/Images/tankleft.png")
         self.imageN = pygame.image.load("PlayerTank/Images/tankup.png")
         self.imageS = pygame.image.load("PlayerTank/Images/tankdown.png")
                        
-        Ball.__init__(self, "PlayerTank/Images/tankup.png", [0,0], [500,500])
+        TankBody.__init__(self, "PlayerTank/Images/tankup.png", [0,0], [500,500])
         
         self.frame = 0;
         self.image = self.imageE
@@ -18,7 +19,8 @@ class PlayerTankBody(Ball):
         self.moving = False;
         self.playingMoving = False
         
-        
+        self.turret = PlayerTurret(maxSpeed, self.rect.center)
+
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
@@ -49,7 +51,9 @@ class PlayerTankBody(Ball):
         if d == "sright":
             self.speedx = 0
             
-    def update(self, size):
+    def update(*args):
+        self = args[0]
+        size = args[1]
         if self.speed != [0,0]:
             self.moving = True
         else:
@@ -62,7 +66,25 @@ class PlayerTankBody(Ball):
             self.moveSound.fadeout(500);
             self.playingMoving = False;
             
-        Ball.update(self, size)
+        TankBody.update(self, size)
+        
+        
+    
+    
+    #def update(self, size):
+        # if self.speed != [0,0]:
+            # self.moving = True
+        # else:
+            # self.moving = False
+        
+        # if self.moving and not self.playingMoving:
+            # self.moveSound.play(-1);
+            # self.playingMoving = True;
+        # elif not self.moving and self.playingMoving:
+            # self.moveSound.fadeout(500);
+            # self.playingMoving = False;
+            
+        # Ball.update(self, size)
         
         
     def headTo(self, pos):

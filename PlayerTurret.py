@@ -1,13 +1,15 @@
 import pygame, sys, math
-#from Turret import *
+from Turret import *
 from Bullet import *
 
-class PlayerTurret(Ball):
+#from EnemyTank import *
+
+class PlayerTurret(Turret):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.baseImage = pygame.image.load("turret.png")
         
        
-        Ball.__init__(self, "turret.png", [0,0], startPos)
+        Turret.__init__(self, "turret.png", [0,0], startPos)
         
         
         self.angle = 0
@@ -57,9 +59,11 @@ class PlayerTurret(Ball):
             self.speedx = 0
         
     """
-    def update(self, size, center):
-        #Ball.update(self, size)
-        self.rect.center = center
+    
+    def update(*args):
+        self = args[0]
+        size = args[1]
+        self.rect.center = args[2]
         
         if self.firing:
             if self.fireTimer < self.fireTimerMax:
@@ -67,7 +71,20 @@ class PlayerTurret(Ball):
             else:
                 self.fireTimer = 0
                 self.firing = False
+    
+    
+    # def update(self, size, center):
+        # #Ball.update(self, size)
+        # self.rect.center = center
         
+        # if self.firing:
+            # if self.fireTimer < self.fireTimerMax:
+                # self.fireTimer += 1
+            # else:
+                # self.fireTimer = 0
+                # self.firing = False
+        
+        #old update no ARGS
         
     def headTo(self, pos):
         self.goal = pos
@@ -132,7 +149,7 @@ class PlayerTurret(Ball):
                 speed = [7,0]
                 image = "Ball.png"
             
-            return Bullet(self.angle, self.rect.center) 
+            Bullet(self.angle, self.rect.center) 
             
             
         

@@ -6,6 +6,7 @@ from Bullet import *
 
 class PlayerTurret(Turret):
     def __init__(self, maxSpeed, startPos=[0,0]):
+        print startPos
         self.baseImage = pygame.image.load("turret.png")
         
        
@@ -63,7 +64,7 @@ class PlayerTurret(Turret):
     def update(*args):
         self = args[0]
         size = args[1]
-        self.rect.center = args[2]
+        
         
         if self.firing:
             if self.fireTimer < self.fireTimerMax:

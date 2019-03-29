@@ -66,7 +66,9 @@ class PlayerTankBody(TankBody):
             self.moveSound.fadeout(500);
             self.playingMoving = False;
             
+        self.turret.rect.center = self.rect.center
         TankBody.update(self, size)
+        
         
         
     
@@ -128,34 +130,32 @@ class PlayerTankBody(TankBody):
                 self.didBounceY = False   
         
     def collide(self, other):
+        print "hit"
         if not(self == other):
-            if self.rect.right > other.rect.left:
-                if self.rect.left < other.rect.right:
-                    if self.rect.top < other.rect.bottom:
-                        if self.rect.bottom > other.rect.top:
-                            if self.radius + other.radius > self.getDist(other.rect.center):
-                                if not self.didBounceX:
-                                    if self.speedx > 1: #right
-                                        if self.rect.centerx < other.rect.centerx:
-                                            self.speedx = 0
-                                            self.didBounceX = True
-                                    if self.speedx < 1: #left
-                                        if self.rect.centerx > other.rect.centerx:
-                                            self.speedx = 0
-                                            self.didBounceX = True
-                                            
-                                if not self.didBounceY:
-                                    if self.speedy > 1: #down
-                                        if self.rect.centery < other.rect.centery:
-                                            self.speedy = 0
-                                            self.didBounceY = True
-                                    if self.speedy < 1: #up
-                                       self.didBounceY = True
+            if not self.didBounceX:
+                if self.speedx > 1: #right
+                    if self.rect.centerx < other.rect.centerx:
+                        self.speedx = 0
+                        self.didBounceX = True
+                if self.speedx < 1: #left
+                    if self.rect.centerx > other.rect.centerx:
+                        self.speedx = 0
+                        self.didBounceX = True
+                        
+            if not self.didBounceY:
+                if self.speedy > 1: #down
+                    if self.rect.centery < other.rect.centery:
+                        self.speedy = 0
+                        self.didBounceY = True
+                if self.speedy < 1: #up
+                   self.didBounceY = True
 
-                                return True
+            return True
         return False
 
-        
+    def kill(self):
+        self.turret.kill()
+        pygame.sprite.Sprite.kill(self)    
         
     def explode(self, bullet):
         if self.rect.right > bullet.rect.left:

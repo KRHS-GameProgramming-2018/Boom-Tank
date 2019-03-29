@@ -21,7 +21,9 @@ class TankBody(pygame.sprite.Sprite):
         y2 = pt[1]
         return math.sqrt((x2-x1)**2 + (y2-y1)**2)
             
-    def update(self, size):
+    def update(*args):
+        self = args[0]
+        size = args[1]
         self.didBounceX = False
         self.didBounceY = False
         self.move()

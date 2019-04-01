@@ -105,7 +105,7 @@ class PlayerTankBody(TankBody):
         else:
             self.speedy = 0
             
-        print self.speedx, self.speedy
+        #print self.speedx, self.speedy
             
     def move(self):
         if self.goal[0]-self.maxSpeed <= self.rect.centerx <= self.goal[0]+self.maxSpeed:
@@ -130,7 +130,7 @@ class PlayerTankBody(TankBody):
                 self.didBounceY = False   
         
     def collide(self, other):
-        print "hit"
+        #print "hit"
         if not(self == other):
             if not self.didBounceX:
                 if self.speedx > 1: #right

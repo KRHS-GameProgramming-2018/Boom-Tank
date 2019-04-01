@@ -2,15 +2,18 @@ import pygame, sys, math, random
 from TankBody import *
 from PlayerTurret import *
 
-class EnemyTank(TankBody):
-    def __init__(self, speed=5, startPos=[0,0]):
+class EnemyTank(pygame.sprite.Sprite):
+    def __init__(self, speed=5, startPos=[0,0]): 
+        #TankBody.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.imageE = pygame.image.load("EnemyTanks/Images/enemytankright.png")
         self.imageW = pygame.image.load("EnemyTanks/Images/enemytankleft.png")
         self.imageN = pygame.image.load("EnemyTanks/Images/enemytankup.png")
         self.imageS = pygame.image.load("EnemyTanks/Images/enemytankdown.png")
                        
-        TankBody.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
+        self.speedx = 0
+        self.speedy = 0
+        self.speed = [self.speedx, self.speedy]
         
         self.frame = 0;
         self.image = self.imageE
@@ -23,14 +26,25 @@ class EnemyTank(TankBody):
         self.directMove()
         
         self.radius = (int(self.rect.height/2.0 + self.rect.width/2.0)/2) - 1
-        self.detectionRadius = 96
-            
+        self.didBounceX = False
+        self.didBounceY = False
+        
         self.living = True
         
         self.turret = PlayerTurret(speed, self.rect.center)
         
-        
         self.lives = 1
+    
+    def getDist(self, pt):
+        x1 = self.rect.centerx
+        y1 = self.rect.centery
+        x2 = pt[0]
+        y2 = pt[1]
+        return math.sqrt((x2-x1)**2 + (y2-y1)**2)
+            
+    def move(self):
+        self.speed = [self.speedx, self.speedy]
+        self.rect = self.rect.move(self.speed)    
         
     def setPos(self, pos):
         self.rect.center = pos
@@ -51,7 +65,7 @@ class EnemyTank(TankBody):
         else:
             self.speedy = 0
             
-        print self.speedx, self.speedy
+        #print self.speedx, self.speedy
             
     def directMove(self, pCenter=None):
         if pCenter and self.getDist(pCenter) < 600:
@@ -64,17 +78,17 @@ class EnemyTank(TankBody):
             if xDif > yDif:
                 if self.rect.centerx < pCenter[0]:
                     self.compass = 1
-                    print "Player Right"
+                    #print "Player Right"
                 else:
                     self.compass = 3
-                    print "Player Left"
+                    #print "Player Left"
             else:
                 if self.rect.centery > pCenter[1]:
                     self.compass = 0
-                    print "Player Above"
+                    #print "Player Above"
                 else:
                     self.compass = 2
-                    print "Player Below"
+                    #print "Player Below"
                 
         else:
             if self.tracking: 

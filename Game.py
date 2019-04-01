@@ -22,16 +22,21 @@ screen = pygame.display.set_mode(size)
 blocks = pygame.sprite.Group()
 playerTanks = pygame.sprite.Group()
 enemyTanks = pygame.sprite.Group()
+tanks = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 Block.containers = (blocks, all)
-PlayerTurret.containers = (playerTanks, all)
+Turret.containers = (tanks, all)
+TankBody.containers = (tanks, all)
 PlayerTankBody.containers = (playerTanks, all)
 EnemyTank.containers = (enemyTanks, all)
 Bullet.containers = (bullets, all)
 
+
+
 player1 = PlayerTankBody(3, [width/3, height/3])
+
 
 
 bgColor = 0,0,0
@@ -41,11 +46,16 @@ bgPicrect = bgPic.get_rect()
 
 lev=1
 player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+
+
+print len(enemyTankCenters)
 for c in enemyTankCenters:
     EnemyTank(3, c)
-
+    
+        
 mposX = 0
 mposY = 0
+#raw_input("> ");
 
 while True:
     print 
@@ -81,7 +91,7 @@ while True:
         
     playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
     for block in playerHitBlocks:
-        print "hit?"
+        #print "hit?"
         player1.collide(block) 
         
     playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, pygame.sprite.collide_mask)
@@ -94,12 +104,19 @@ while True:
             enemy.collide(block)
     
     enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
-    
+   
+    """
+    print "all.sprites():"
+    for s in all.sprites():
+        print "\t", s
+    print "all.spritedict.keys():"
+    for s in all.spritedict.keys():
+        print "\t",s, all.spritedict[s]
+    """        
     bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
 
     all.update(size, player1.rect.center)
     
-
     
     screen.blit(bgPic, bgPicrect)
     dirty = all.draw(screen)

@@ -66,8 +66,8 @@ mposY = 0
 while True:
     for event in pygame.event.get():
         #print event.type
-        if event.type == pygame.QUIT:
-            sys.exit()
+        if event.type == pygame.QUIT: 
+            sys.exit() 
         if event.type == pygame.MOUSEMOTION:
             playerTurret.rotate(event.pos)
         if event.type == pygame.KEYDOWN:

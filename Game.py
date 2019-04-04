@@ -87,9 +87,12 @@ while True:
                 player1.go("sdown")
             if event.key == pygame.K_d:
                 player1.go("sright")
-        if len(EnemyTank.containers) <= 0:
+        if len(enemyTanks) <= 0:
             if lev < 10:
                 lev += 1
+            if lev == 10:
+                if len(enemyTanks) <= 0:
+                    lev == 1
                 player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev + 1)+".lvl")
             # for c in enemyTankCenters:
                 # EnemyTank(3, c)

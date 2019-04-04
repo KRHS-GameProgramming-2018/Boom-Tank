@@ -48,6 +48,7 @@ lev=1
 player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
 
 
+
 print len(enemyTankCenters)
 for c in enemyTankCenters:
     EnemyTank(3, c)
@@ -86,12 +87,25 @@ while True:
                 player1.go("sdown")
             if event.key == pygame.K_d:
                 player1.go("sright")
-        
+        if len(EnemyTank.containers) <= 0:
+            if lev < 10:
+                lev += 1
+                player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev + 1)+".lvl")
+            # for c in enemyTankCenters:
+                # EnemyTank(3, c)
+                # for c in enemyTankCenters:
+    # EnemyTank(3, c)
     
+        
+    # if len(enemyTanks) <= 0:
+            # if lev < 10:
+                # lev += 1
+            # else:
+                # lev = 1
+            # blocks, player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
         
     playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
     for block in playerHitBlocks:
-        #print "hit?"
         player1.collide(block) 
         
     playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, pygame.sprite.collide_mask)

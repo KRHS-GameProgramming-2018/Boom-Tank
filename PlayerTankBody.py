@@ -21,6 +21,9 @@ class PlayerTankBody(TankBody):
         
         self.turret = PlayerTurret(maxSpeed, self.rect.center)
 
+        self.living = True
+        
+        self.lives = 1
         
         self.maxSpeed = maxSpeed
         self.goal = [0,0]

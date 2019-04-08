@@ -88,7 +88,6 @@ while True:
                 player1.go("sright")
         
     if len(enemyTanks.sprites()) <= 0:
-        print "No Tanks"
         if lev < 10:
             lev += 1
         else:
@@ -110,6 +109,7 @@ while True:
     if len(playerHitEnemys) > 0:
         player1.kill()
         
+     
     enemyTanksHitBlocks = pygame.sprite.groupcollide(enemyTanks, blocks, False, False)
     for enemy in enemyTanksHitBlocks:
         for block in enemyTanksHitBlocks[enemy]:
@@ -117,14 +117,7 @@ while True:
     
     enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
    
-    """
-    print "all.sprites():"
-    for s in all.sprites():
-        print "\t", s
-    print "all.spritedict.keys():"
-    for s in all.spritedict.keys():
-        print "\t",s, all.spritedict[s]
-    """        
+   
     bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
 
     all.update(size, player1.rect.center)

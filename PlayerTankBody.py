@@ -13,7 +13,7 @@ class PlayerTankBody(TankBody):
         
         self.frame = 0;
         self.image = self.imageE
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(center = startPos)
         
         self.moveSound = pygame.mixer.Sound("PlayerTank/Sounds/moving.wav")
         self.moving = False;

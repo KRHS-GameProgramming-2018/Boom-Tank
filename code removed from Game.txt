@@ -86,3 +86,13 @@
         # screen.blit(block.image, block.rect)
     # for bullet in bullets:
         # screen.blit(bullet.image, bullet.rect)
+
+
+ # """
+    # print "all.sprites():"
+    # for s in all.sprites():
+        # print "\t", s
+    # print "all.spritedict.keys():"
+    # for s in all.spritedict.keys():
+        # print "\t",s, all.spritedict[s]
+    # """        

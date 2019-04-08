@@ -35,7 +35,7 @@ Bullet.containers = (bullets, all)
 
 
 
-player1 = PlayerTankBody(3, [width/3, height/3])
+
 
 
 
@@ -45,11 +45,10 @@ bgPic = pygame.image.load("wood.png")
 bgPicrect = bgPic.get_rect()
 
 lev=1
-player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+player1 = PlayerTankBody(3, pcenter)
 
 
-
-print len(enemyTankCenters)
 for c in enemyTankCenters:
     EnemyTank(3, c)
     
@@ -59,7 +58,7 @@ mposY = 0
 #raw_input("> ");
 
 while True:
-    print 
+     
     for event in pygame.event.get():
         #print event.type
         if event.type == pygame.QUIT: 
@@ -87,26 +86,21 @@ while True:
                 player1.go("sdown")
             if event.key == pygame.K_d:
                 player1.go("sright")
-        if len(enemyTanks) <= 0:
-            if lev < 10:
-                lev += 1
-            if lev == 10:
-                if len(enemyTanks) <= 0:
-                    lev == 1
-                player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev + 1)+".lvl")
-            # for c in enemyTankCenters:
-                # EnemyTank(3, c)
-                # for c in enemyTankCenters:
-    # EnemyTank(3, c)
-    
         
-    # if len(enemyTanks) <= 0:
-            # if lev < 10:
-                # lev += 1
-            # else:
-                # lev = 1
-            # blocks, player1.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
-        
+    if len(enemyTanks.sprites()) <= 0:
+        if lev < 10:
+            lev += 1
+        else:
+            lev == 1
+            
+        for s in all.sprites():
+            s.kill()
+        pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+        player1 = PlayerTankBody(3, pcenter)
+
+        for c in enemyTankCenters:
+            EnemyTank(3, c)        
+            
     playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
     for block in playerHitBlocks:
         player1.collide(block) 
@@ -115,6 +109,7 @@ while True:
     if len(playerHitEnemys) > 0:
         player1.kill()
         
+     
     enemyTanksHitBlocks = pygame.sprite.groupcollide(enemyTanks, blocks, False, False)
     for enemy in enemyTanksHitBlocks:
         for block in enemyTanksHitBlocks[enemy]:
@@ -122,14 +117,7 @@ while True:
     
     enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
    
-    """
-    print "all.sprites():"
-    for s in all.sprites():
-        print "\t", s
-    print "all.spritedict.keys():"
-    for s in all.spritedict.keys():
-        print "\t",s, all.spritedict[s]
-    """        
+   
     bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
 
     all.update(size, player1.rect.center)

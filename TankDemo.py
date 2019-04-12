@@ -14,24 +14,58 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-level = loadLevel("Levels/1.lvl")
-
-balls = []
-
-for i in range(3):
-    images = ["Images/Ball/ball.png"]
-    speed = [random.randint(1,10), random.randint(1,10)]
-    pos = [random.randint(0,690), random.randint(0,690)]
-    balls += [Ball(images[0], speed, pos)]
-
-player1 = PlayerBall(5, [width/2, height/2])
-
 bgColor = 0,0,0
 
 mposX = 0
 mposY = 0
 
+mode = "start" 
 while True:
+     #- - -- - -START CONFIG- - -- - -
+     bgImage = pygame.image.load("Screens,Buttons/startscreen TEMP.png")
+     bgRect = bgImage.get_rect()
+     
+     
+     
+     #-- --- --START IN GAME-- --- --
+     while mode == "start":
+         for event in pygame.event.get():
+             if event.type == pygame.QUIT:
+                 sys.exit()
+             if event.type == pygame.MOUSEMOTION:
+                 if event.buttons[0] == 0:
+                     startButton.checkHover(event.pos)
+                 else:
+                     startButton.checkClick(event.pos)
+             if event.type == pygame.MOUSEBUTTONDOWN:
+                 print event.button
+                 if event.button == 1:
+                     startButton.checkClick(event.pos)
+             if event.type == pygame.MOUSEBUTTONUP:
+                 if startButton.collidePt(event.pos):
+                      mode = "game"
+             
+         
+
+
+
+
+    #-- -- -- --GAME SETUP-- -- -- --
+    level = loadLevel("Levels/1.lvl")
+
+    balls = []
+
+  for i in range(3):
+    images = ["Images/Ball/ball.png"]
+    speed = [random.randint(1,10), random.randint(1,10)]
+    pos = [random.randint(0,690), random.randint(0,690)]
+    balls += [Ball(images[0], speed, pos)]
+
+   player1 = PlayerBall(5, [width/2, height/2])
+
+
+   #- --- - ---IN GAME--- - --- -
+   while mode == "game"and player1.living:
     for event in pygame.event.get():
         #print event.type
         if event.type == pygame.QUIT:

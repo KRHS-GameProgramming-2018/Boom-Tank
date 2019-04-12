@@ -2,7 +2,7 @@ import pygame, sys, math
 from Turret import *
 from Bullet import *
 
-class PlayerTurret2(Ball):
+class PlayerTurret2(Turret):
     def __init__(self, maxSpeed, startPos=[0,0]):
         self.baseImage = pygame.image.load("turret.png")
         

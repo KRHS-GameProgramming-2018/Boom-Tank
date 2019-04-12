@@ -1,11 +1,13 @@
 import pygame, sys, math, random
-import pygame, sys, math, random         
+import pygame, sys, math, random          
 from Turret import *
 from PlayerTurret import *
 from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
 from Bullet import *
+from TankBody import *
+from background import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -18,149 +20,119 @@ size = width, height
 
 screen = pygame.display.set_mode(size)
 
-playerTurret = PlayerTurret(5, [width/2, height/2])
-playerTank = PlayerTankBody(3, [width/3, height/3])
-enemyTanks = []
+blocks = pygame.sprite.Group()
+playerTanks = pygame.sprite.Group()
+enemyTanks = pygame.sprite.Group()
+tanks = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
+backgrounds = pygame.sprite.Group()
+
+all = pygame.sprite.OrderedUpdates()
+
+Block.containers = (blocks, all)
+Turret.containers = (tanks, all)
+TankBody.containers = (tanks, all)
+PlayerTankBody.containers = (playerTanks, all)
+EnemyTank.containers = (enemyTanks, all)
+Bullet.containers = (bullets, all)
+Background.containers = (all)
 
 
-bgColor = 0,0,0
 
-bgPic = pygame.image.load("wood.png")
-bgPicrect = bgPic.get_rect()
-
-lev=1
-blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
-for c in enemyTankCenters:
-    enemyTanks += [PlayerEnemy(3, c)]
-
-balls = []
-bullets = []
-
-
-mposX = 0
-mposY = 0
-
-
-#mode = "start"
-
-#go = True
-
-
-# while go:
-    # startimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
-    # #deathimage = pygame.transform.scale(pygame.image.load("wood.png"), [width,height])
-   # #STARTSCREEN
- 
-    # while mode == "start":
-        # for event in pygame.event.get():
-            # #print event.type
-            # if event.type == pygame.QUIT:
-                # sys.exit()
-            # if event.type == pygame.KEYDOWN:
-                # #pygame.time.delay(1000)
-                # mode = "play"
-        # screen.blit(startimage, (0,0))
-        # pygame.display.flip()
-        # clock.tick(60)
-
+mode = "ready"
 while True:
-    for event in pygame.event.get():
-        #print event.type
-        if event.type == pygame.QUIT:
-            sys.exit()
-        if event.type == pygame.MOUSEMOTION:
-            playerTurret.rotate(event.pos)
-        if event.type == pygame.KEYDOWN:
-            if playerTank:
+    bg = Background ("PlayerTank/Images/explosion.png")
+    while mode == "ready":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    mode = "play"
+                if event.key == pygame.K_ESCAPE:
+                    mode = "menu"
+                if event.type == pygame.QUIT:
+                    sys.exit()
+        
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+    
+    bg.kill()
+    lev = 1
+    bg = Background("wood.png")
+    pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+    player1 = PlayerTankBody(3, pcenter)
+    for c in enemyTankCenters:
+        EnemyTank(3, c)
+    while mode == "play":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT: 
+                sys.exit() 
+            if event.type == pygame.MOUSEMOTION:
+                player1.turret.rotate(event.pos)
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    playerTank.go("up")
+                    player1.go("up")
                 if event.key == pygame.K_a:
-                    playerTank.go("left")
+                    player1.go("left")
                 if event.key == pygame.K_s:
-                    playerTank.go("down")
+                    player1.go("down")
                 if event.key == pygame.K_d:
-                    playerTank.go("right")
+                    player1.go("right")
                 if event.key == pygame.K_SPACE:
                     print "shooting"
-                    bullets += [playerTurret.shoot()]
-        if event.type == pygame.KEYUP:
-            if playerTank:
+                    player1.turret.shoot()
+            if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w: 
-                    playerTank.go("sup")
+                    player1.go("sup")
                 if event.key == pygame.K_a:
-                    playerTank.go("sleft")
+                    player1.go("sleft")
                 if event.key == pygame.K_s:
-                    playerTank.go("sdown")
+                    player1.go("sdown")
                 if event.key == pygame.K_d:
-                    playerTank.go("sright")
-       
+                    player1.go("sright")
             
-        
-        
-        
-    for bullet in bullets: 
-        bullet.update(size)
-        for enemyTank in enemyTanks:
-            bullet.collide(enemyTank)
-        for block in blocks:
-            bullet.collide(block)
-            
-        bullet.bounceWall(size)
-        if not bullet.living:
-            bullets.remove(bullet)
-        for enemyTank in enemyTanks:
-            enemyTank.explode(bullet)
-    if playerTank:
-        for Block in blocks:
-            playerTank.collide(Block)  
-            for enemyTank in enemyTanks:  
-                enemyTank.collide(Block)    
-        
-    enemyTank.collide(Block)
-      
-        
-    print len(bullets)
-    
-    for enemyTank in enemyTanks:
-        if playerTank:
-            if playerTank.collide(enemyTank):
-                playerTank = None
-    for enemyTank in enemyTanks:
-        enemyTank.turret.update(size, enemyTank.rect.center)
-    if playerTank:
-        playerTank.update(size)
-        playerTurret.update(size, playerTank.rect.center)
-    if playerTank:
-        for enemyTank in enemyTanks:
-            enemyTank.update(size, playerTank.rect.center)
-    for enemyTank in enemyTanks:
-        if not enemyTank.living:
-            enemyTanks.remove(enemyTank)
-        if len(enemyTanks) <= 0:
+        if len(enemyTanks.sprites()) <= 0:
             if lev < 10:
                 lev += 1
             else:
-                lev = 1
-            blocks, playerTank.rect.center, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+                lev == 1
+                
+            for s in all.sprites():
+                s.kill()
+            bg = Background("wood.png")
+            pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
+            player1 = PlayerTankBody(3, pcenter)
+
             for c in enemyTankCenters:
-                enemyTanks += [PlayerEnemy(3, c)]
+                EnemyTank(3, c)        
                 
-                
-    
-    screen.fill(bgColor)
-    screen.blit(bgPic, bgPicrect)
-    for enemyTank in enemyTanks:
-        screen.blit(enemyTank.image, enemyTank.rect)
-        screen.blit(enemyTank.turret.image, enemyTank.turret.rect)
-    if playerTank:
-        screen.blit(playerTank.image, playerTank.rect)
-        screen.blit(playerTurret.image, playerTurret.rect)
-    for block in blocks:
-        screen.blit(block.image, block.rect)
-    for bullet in bullets:
-        screen.blit(bullet.image, bullet.rect)
-    
+        playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
+        for block in playerHitBlocks:
+            player1.collide(block) 
             
-    pygame.display.flip()
-    clock.tick(40)
-    print clock.get_fps()
+        playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, pygame.sprite.collide_mask)
+        if len(playerHitEnemys) > 0:
+            player1.kill()
+            
+         
+        enemyTanksHitBlocks = pygame.sprite.groupcollide(enemyTanks, blocks, False, False)
+        for enemy in enemyTanksHitBlocks:
+            for block in enemyTanksHitBlocks[enemy]:
+                enemy.collide(block)
+        
+        enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
+       
+       
+        bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
+
+        all.update(size, player1.rect.center)
+        
+        
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)

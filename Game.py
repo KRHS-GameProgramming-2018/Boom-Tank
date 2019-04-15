@@ -144,19 +144,20 @@ while True:
         clock.tick(60)
                 
     bg.kill()
-             
+    bg = Background("PlayerTank/Images/DEATHSCREEN.png")         
     while mode == "death":
-        bg = Background("PlayerTank/Images/DEATHSCREEN.png")
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    mode = "ready"
+                for s in all.sprites():
+                    s.kill()
+                    if event.key == pygame.K_SPACE:
+                        mode = "ready"
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
     
-                
+    bg.kill()            

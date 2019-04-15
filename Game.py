@@ -146,7 +146,7 @@ while True:
     bg.kill()
              
     while mode == "death":
-        bg = Background("DEATHSCREEN.png")
+        bg = Background("PlayerTank/Images/DEATHSCREEN.png")
         for event in pygame.event.get():
             #print event.type
             if event.type == pygame.QUIT:

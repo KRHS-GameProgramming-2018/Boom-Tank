@@ -108,7 +108,13 @@ while True:
             player1 = PlayerTankBody(3, pcenter)
 
             for c in enemyTankCenters:
-                EnemyTank(3, c)        
+                EnemyTank(3, c)   
+                
+                
+        if len(playerTanks.sprites()) <= 0:
+            mode = "death"
+            for s in all.sprites():
+                s.kill()
                 
         playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
         for block in playerHitBlocks:
@@ -123,16 +129,60 @@ while True:
         for enemy in enemyTanksHitBlocks:
             for block in enemyTanksHitBlocks[enemy]:
                 enemy.collide(block)
-        
+
         enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
-       
-       
+
+
         bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
 
         all.update(size, player1.rect.center)
-        
-        
+
+
         dirty = all.draw(screen)
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
+                
+    bg.kill()
+             
+    while mode == "death":
+        bg = Background("wood.png")
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    mode = "ready"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+    
+                
+# playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
+# for block in playerHitBlocks:
+    # player1.collide(block) 
+    
+# playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, pygame.sprite.collide_mask)
+# if len(playerHitEnemys) > 0:
+    # player1.kill()
+    
+ 
+# enemyTanksHitBlocks = pygame.sprite.groupcollide(enemyTanks, blocks, False, False)
+# for enemy in enemyTanksHitBlocks:
+    # for block in enemyTanksHitBlocks[enemy]:
+        # enemy.collide(block)
+
+# enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
+
+
+# bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)
+
+# all.update(size, player1.rect.center)
+
+
+# dirty = all.draw(screen)
+# pygame.display.update(dirty)
+# pygame.display.flip()
+# clock.tick(60)

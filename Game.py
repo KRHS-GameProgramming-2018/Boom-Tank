@@ -8,6 +8,7 @@ from EnemyTank import *
 from Bullet import *
 from TankBody import *
 from background import *
+from Button import *
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -26,6 +27,7 @@ enemyTanks = pygame.sprite.Group()
 tanks = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
+buttons = pygame.sprite.Group()
 
 all = pygame.sprite.OrderedUpdates()
 
@@ -36,12 +38,14 @@ PlayerTankBody.containers = (playerTanks, all)
 EnemyTank.containers = (enemyTanks, all)
 Bullet.containers = (bullets, all)
 Background.containers = (all)
+Button.containers = (all, buttons)
 
 
 
 mode = "ready"
 while True:
-    bg = Background ("PlayerTank/Images/explosion.png")
+    bg = Background ("Images/Screens/boomStartScreen.png")
+    startButton = Button ("start",[500,375])
     while mode == "ready":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -53,6 +57,17 @@ while True:
                     mode = "menu"
                 if event.type == pygame.QUIT:
                     sys.exit()
+            if event.type == pygame.MOUSEMOTION:
+                if event.buttons[0] == 0:
+                    startButton.checkHover(event.pos)
+                else:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    startButton.checkClick(event.pos)
+            if event.type == pygame.MOUSEBUTTONUP:
+                if startButton.collidePt(event.pos):
+                    mode = "play"
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)

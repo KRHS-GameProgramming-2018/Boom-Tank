@@ -28,6 +28,9 @@ class PlayerTankBody(TankBody):
         self.maxSpeed = maxSpeed
         self.goal = [0,0]
         
+        self.living = True
+        
+        
     def setPos(self, pos):
         self.rect.center = pos
         

@@ -3,7 +3,7 @@ from TankBody import *
 from PlayerTurret import *
 
 class EnemyTank(pygame.sprite.Sprite):
-    def __init__(self, speed=3, startPos=[0,0]): 
+    def __init__(self, speed=3 , startPos=[0,0]): 
         #TankBody.__init__(self, "PlayerTank/Images/tankup.png", [0,0], startPos)
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.imageE = pygame.image.load("EnemyTanks/Images/enemytankright.png")

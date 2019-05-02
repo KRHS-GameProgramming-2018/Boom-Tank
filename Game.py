@@ -113,8 +113,9 @@ while True:
         if len(enemyTanks.sprites()) <= 0:
             if lev < 10:
                 lev += 1
-            else:
-                lev == 1
+            if lev == 10:
+                mode = "win"
+                
                 
             for s in all.sprites():
                 s.kill()
@@ -155,7 +156,7 @@ while True:
 
         dirty = all.draw(screen)
         pygame.display.update(dirty)
-        pygame.display.flip()
+        pygame.display.flip( )
         clock.tick(60)
                 
     bg.kill()

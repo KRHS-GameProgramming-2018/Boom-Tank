@@ -51,8 +51,8 @@ while True:
             if event.type == pygame.QUIT:
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    mode = "play"
+                #if event.key == pygame.K_SPACE:
+                    #mode = "play"
                 if event.key == pygame.K_ESCAPE:
                     mode = "menu"
                 if event.type == pygame.QUIT:
@@ -113,6 +113,7 @@ while True:
         if len(enemyTanks.sprites()) <= 0:
             if lev < 10:
                 lev += 1
+                print "next"
             if lev == 10:
                 mode = "win"
                 
@@ -177,3 +178,50 @@ while True:
         clock.tick(60)
     
     bg.kill()            
+    
+    while mode == "win":
+        bg = Background("Images/Screens/win.png")
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                for s in all.sprites():
+                    s.kill()
+                    if event.key == pygame.K_SPACE:
+                        mode = "ready"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+    
+    bg.kill()            
+    
+    while mode == "war zone":
+        for event in pygame.event.get():
+            #print event.type
+            if event.type == pygame.QUIT: 
+                sys.exit() 
+            if event.type == pygame.MOUSEMOTION:
+                player1.turret.rotate(event.pos)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    player1.go("up")
+                if event.key == pygame.K_a:
+                    player1.go("left")
+                if event.key == pygame.K_s:
+                    player1.go("down")
+                if event.key == pygame.K_d:
+                    player1.go("right")
+                if event.key == pygame.K_SPACE:
+                    print "shooting"
+                    player1.turret.shoot()
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_w: 
+                    player1.go("sup")
+                if event.key == pygame.K_a:
+                    player1.go("sleft")
+                if event.key == pygame.K_s:
+                    player1.go("sdown")
+                if event.key == pygame.K_d:
+                    player1.go("sright")

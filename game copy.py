@@ -90,13 +90,13 @@ while True:
                 player1.turret.rotate(event.pos)
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w:
-                    player1.go("up")
-                if event.key == pygame.K_a:
-                    player1.go("left")
-                if event.key == pygame.K_s:
                     player1.go("down")
-                if event.key == pygame.K_d:
+                if event.key == pygame.K_a:
                     player1.go("right")
+                if event.key == pygame.K_s:
+                    player1.go("up")
+                if event.key == pygame.K_d:
+                    player1.go("left")
                 if event.key == pygame.K_SPACE:
                     print "shooting"
                     player1.turret.shoot()

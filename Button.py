@@ -7,9 +7,13 @@ class Button(pygame.sprite.Sprite):
             self.basicImage = pygame.image.load("Images/Buttons/StartButton.png")
             self.hoverImage = pygame.image.load("Images/Buttons/StartButtonHover.png")
             self.clickImage = pygame.image.load("Images/Buttons/StartButtonClicked.png")
+        elif kind == "quit":
+            self.basicImage = pygame.image.load("Images/Buttons/QuitButton.png")
+            self.hoverImage = pygame.image.load("Images/Buttons/QuitButtonHover.png")
+            self.clickImage = pygame.image.load("Images/Buttons/QuitButtonClicked.png")
         self.image = self.basicImage
         self.rect = self.image.get_rect(center=pos)
-        self.radius = (self.rect.width/2 + self.rect.height/2)/2
+        
         
     def collidePt(self, pt):
         if self.rect.right > pt[0]:

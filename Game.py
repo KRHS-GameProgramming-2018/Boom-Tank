@@ -46,6 +46,7 @@ mode = "ready"
 while True:
     bg = Background ("Images/Screens/boomStartScreen.png")
     startButton = Button ("start",[500,375])
+    quitButton = Button ("quit",[500,475])
     while mode == "ready":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -60,14 +61,19 @@ while True:
             if event.type == pygame.MOUSEMOTION:
                 if event.buttons[0] == 0:
                     startButton.checkHover(event.pos)
+                    quitButton.checkHover(event.pos)
                 else:
                     startButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     startButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
                     mode = "play"
+                if quitButton.collidePt(event.pos):
+                    sys.exit()
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)

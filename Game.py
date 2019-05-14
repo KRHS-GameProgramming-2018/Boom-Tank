@@ -8,6 +8,7 @@ from EnemyTank import *
 from Bullet import *
 from TankBody import *
 from background import *
+from countdown import *
 from Button import *
 pygame.init()
 
@@ -28,6 +29,7 @@ tanks = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
+countdowns = pygame.sprite.Group()
 
 all = pygame.sprite.OrderedUpdates()
 
@@ -39,9 +41,10 @@ EnemyTank.containers = (enemyTanks, all)
 Bullet.containers = (bullets, all)
 Background.containers = (all)
 Button.containers = (all, buttons)
+Countdown.containers = (all, countdowns)
 
 
-
+lev = 1
 mode = "ready"
 while True:
     bg = Background ("Images/Screens/boomStartScreen.png")
@@ -71,7 +74,7 @@ while True:
                     quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
-                    mode = "play"
+                    mode = "countdown"
                 if quitButton.collidePt(event.pos):
                     sys.exit()
         
@@ -81,7 +84,20 @@ while True:
         clock.tick(60)
     
     bg.kill()
-    lev = 1
+    cd=Countdown()
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        all.update()
+        if cd.done:
+            mode = "play"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)   
+    
+    cd.kill()
     bg = Background("wood.png")
     pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
     player1 = PlayerTankBody(3, pcenter)

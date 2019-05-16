@@ -8,6 +8,7 @@ from EnemyTank import *
 from Bullet import *
 from TankBody import *
 from background import *
+from countdown import *
 from Button import *
 from EnemyTurret import *
 
@@ -30,6 +31,7 @@ tanks = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 backgrounds = pygame.sprite.Group()
 buttons = pygame.sprite.Group()
+countdowns = pygame.sprite.Group()
 
 all = pygame.sprite.OrderedUpdates()
 
@@ -41,13 +43,15 @@ EnemyTank.containers = (enemyTanks, all)
 Bullet.containers = (bullets, all)
 Background.containers = (all)
 Button.containers = (all, buttons)
+Countdown.containers = (all, countdowns)
 
 
-
+lev = 1
 mode = "ready"
 while True:
     bg = Background ("Images/Screens/boomStartScreen.png")
     startButton = Button ("start",[500,375])
+    quitButton = Button ("quit",[500,475])
     while mode == "ready":
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -62,14 +66,19 @@ while True:
             if event.type == pygame.MOUSEMOTION:
                 if event.buttons[0] == 0:
                     startButton.checkHover(event.pos)
+                    quitButton.checkHover(event.pos)
                 else:
                     startButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     startButton.checkClick(event.pos)
+                    quitButton.checkClick(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.collidePt(event.pos):
-                    mode = "play"
+                    mode = "countdown"
+                if quitButton.collidePt(event.pos):
+                    sys.exit()
         
         dirty = all.draw(screen)
         pygame.display.update(dirty)
@@ -77,7 +86,20 @@ while True:
         clock.tick(60)
     
     bg.kill()
-    lev = 1
+    cd=Countdown()
+    while mode == "countdown":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        all.update()
+        if cd.done:
+            mode = "play"
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)   
+    
+    cd.kill()
     bg = Background("wood.png")
     pcenter, enemyTankCenters = loadLevel("Levels/"+str(lev)+".lvl")
     player1 = PlayerTankBody(3, pcenter)

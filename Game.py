@@ -9,6 +9,8 @@ from Bullet import *
 from TankBody import *
 from background import *
 from Button import *
+from EnemyTurret import *
+
 pygame.init()
 
 clock = pygame.time.Clock()
@@ -133,14 +135,16 @@ while True:
             for s in all.sprites():
                 s.kill()
                 
-        playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False)
+                
+        playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False, False)
         for block in playerHitBlocks:
             player1.collide(block) 
             
-        playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, pygame.sprite.collide_mask)
+        
+            
+        playerHitEnemys = pygame.sprite.spritecollide(player1, enemyTanks, False, False)
         if len(playerHitEnemys) > 0:
             player1.kill()
-            
          
         enemyTanksHitBlocks = pygame.sprite.groupcollide(enemyTanks, blocks, False, False)
         for enemy in enemyTanksHitBlocks:
@@ -148,6 +152,9 @@ while True:
                 enemy.collide(block)
 
         enemyTanksHitBullets = pygame.sprite.groupcollide(enemyTanks, bullets, True, True)
+        # for EnemyTank in enemytanks:
+            # if bullet.collide(Enemytank):
+                # pygame.transform.scale(pygame.image.load("PlayerTank/Images/explosion.png"),
 
 
         bulletsHitBlocks = pygame.sprite.groupcollide(bullets, blocks, True, False)

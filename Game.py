@@ -6,9 +6,9 @@ from PlayerTankBody import *
 from Levels import *
 from EnemyTank import *
 from Bullet import *
-from TankBody import *
-from background import *
+from TankBody import * 
 from countdown import *
+from background import *
 from Button import *
 pygame.init()
 
@@ -39,9 +39,9 @@ TankBody.containers = (tanks, all)
 PlayerTankBody.containers = (playerTanks, all)
 EnemyTank.containers = (enemyTanks, all)
 Bullet.containers = (bullets, all)
-Background.containers = (all)
 Button.containers = (all, buttons)
 Countdown.containers = (all, countdowns)
+Background.containers = (all, backgrounds)
 
 
 lev = 1

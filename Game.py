@@ -159,7 +159,7 @@ while True:
                 
                 
         playerHitBlocks = pygame.sprite.spritecollide(player1, blocks, False, False)
-        for block in playerHitBlocks:
+        for block in playerHitBlocks: 
             player1.collide(block) 
             
         

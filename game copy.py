@@ -225,3 +225,15 @@ while True:
                     player1.go("sdown")
                 if event.key == pygame.K_d:
                     player1.go("sright")
+                    
+                    
+                    
+                    
+         # playerHitAsteroids = pygame.sprite.spritecollide(player1, asteroids, True, False) #Boolean checks if object should be killed upon collision
+        # playerHitAbilities = pygame.sprite.spritecollide(player1, abilities, True)
+        # playerHitLimits = pygame.sprite.spritecollide(player1, limits, True, False)
+      
+        
+        # asteroidsHitAsteroids = pygame.sprite.groupcollide(asteroids, asteroids, False, False)
+        
+        # missilesHitAsteroids = pygame.sprite.groupcollide(missiles, asteroids, True, False)

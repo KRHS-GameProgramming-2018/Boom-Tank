@@ -10,7 +10,7 @@ from TankBody import *
 from countdown import *
 from background import *
 from Button import *
-from EnemyTurret import *
+#from EnemyTurret import *
 
 pygame.init()
 
